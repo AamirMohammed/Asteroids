@@ -1,0 +1,7 @@
+{
+  "name": "com.aamir.statemachine",
+  "version": "1.0.0",
+  "displayName": "State Machine",
+  "description": "Reusable FSM",
+  "unity": "6000.0"
+}
