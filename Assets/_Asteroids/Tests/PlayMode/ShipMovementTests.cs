@@ -43,7 +43,7 @@ namespace Asteroids.Tests.PlayMode {
             Vector3 initialPosition = _ship.transform.position;
             _inputReader.ThrustInput += Raise.Event<Action<bool>>(false);
             yield return new WaitForFixedUpdate();
-            Assert.AreEqual(initialPosition, _ship.transform.position);
+            Assert.That(_ship.transform.position, Is.EqualTo(initialPosition));
         }
 
         [UnityTest]
