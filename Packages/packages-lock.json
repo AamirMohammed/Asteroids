@@ -195,6 +195,13 @@
       "dependencies": {},
       "hash": "177dbda557fd652ce7f5d1647a3621653e094373"
     },
+    "net.tnrd.nsubstitute": {
+      "version": "5.1.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
