@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Pool;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using VContainer;
+using VContainer.Unity;
 
 namespace Asteroids.Pooling {
     public class PrefabPool : MonoBehaviour {
@@ -12,7 +14,15 @@ namespace Asteroids.Pooling {
         private ObjectPool<PoolItem> _pool;
         private GameObject _prefab;
         private string _runtimeKey;
+        private IObjectResolver _container;
+
         public string RuntimeKey => _runtimeKey;
+        public bool IsReady { get; private set; }
+
+        [Inject]
+        public void Construct(IObjectResolver container) {
+            _container = container;
+        }
 
         private void Awake() {
             _runtimeKey = _prefabReference.RuntimeKey.ToString();
@@ -38,6 +48,7 @@ namespace Asteroids.Pooling {
                 defaultCapacity: _defaultCapacity,
                 maxSize: _maxSize
             );
+            IsReady = true;
         }
 
         public PoolItem GetItem() {
@@ -50,7 +61,7 @@ namespace Asteroids.Pooling {
         }
 
         private PoolItem Create() {
-            PoolItem item = Instantiate(_prefab, transform).GetComponent<PoolItem>();
+            PoolItem item = _container.Instantiate(_prefab, transform).GetComponent<PoolItem>();
             item.Pool = _pool;
             return item;
         }
