@@ -2,6 +2,7 @@ using Asteroids.Asteroid;
 using Asteroids.Core;
 using Asteroids.Input;
 using Asteroids.Pooling;
+using Asteroids.Randomization;
 using Asteroids.ScreenWrap;
 using UnityEngine;
 using VContainer;
@@ -20,6 +21,7 @@ namespace Asteroids.DI {
             builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();
             builder.Register<ScreenWrapCalculator>(Lifetime.Singleton);
             builder.Register<AsteroidSpawner>(Lifetime.Singleton);
+            builder.Register<UnityRandomProvider>(Lifetime.Singleton).As<IRandomProvider>();
             builder.RegisterComponent(_inputReader).As<IInputReader>();
             builder.RegisterComponent(_poolRegistry);
         }

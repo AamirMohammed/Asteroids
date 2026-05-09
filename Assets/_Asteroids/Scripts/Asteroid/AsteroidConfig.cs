@@ -3,7 +3,7 @@ using UnityEngine.AddressableAssets;
 
 namespace Asteroids.Asteroid {
     [CreateAssetMenu(fileName = "AsteroidConfig", menuName = "Asteroids/Asteroid Config")]
-    public class AsteroidConfig : ScriptableObject {
+    public class AsteroidConfig : ScriptableObject, IAsteroidConfig {
         [SerializeField, Range(1f, 10f)] private float _minSpeed = 1f;
         [SerializeField, Range(1f, 10f)] private float _maxSpeed = 3f;
         [SerializeField, Range(1, 10)] private int _spawnCount = 4;
