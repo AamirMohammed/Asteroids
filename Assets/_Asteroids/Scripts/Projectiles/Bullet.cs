@@ -5,21 +5,23 @@ namespace Asteroids.Projectiles {
     public class Bullet : PoolItem {
         [SerializeField] private BulletConfig _config;
 
-        private float _elapsedTime;
+        private BulletController _controller;
+
+        private void Awake() {
+            _controller = new BulletController(_config);
+        }
 
         private void OnEnable() {
-            _elapsedTime = 0f;
+            _controller.Reset();
         }
 
         private void Update() {
-            _elapsedTime += Time.deltaTime;
-
-            if (_elapsedTime >= _config.Lifetime) {
+            if (_controller.IsExpired(Time.deltaTime)) {
                 Pool.Release(this);
                 return;
             }
 
-            transform.Translate(Vector2.up * (_config.Speed * Time.deltaTime));
+            transform.Translate(_controller.GetMovement(Time.deltaTime));
         }
     }
 }
