@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace Asteroids.ScreenWrap {
     public class ScreenWrapCalculator {
-        private readonly Camera _camera;
+        private readonly IScreenBoundsProvider _screenBoundsProvider;
 
-        public ScreenWrapCalculator(Camera camera) {
-            _camera = camera;
+        public ScreenWrapCalculator(IScreenBoundsProvider screenBoundsProvider) {
+            _screenBoundsProvider = screenBoundsProvider;
         }
 
         public Vector2 GetWrappedPosition(Vector2 position, float radius) {
-            Vector2 bottomLeft = _camera.ViewportToWorldPoint(Vector2.zero);
-            Vector2 topRight = _camera.ViewportToWorldPoint(Vector2.one);
+            Vector2 bottomLeft = _screenBoundsProvider.BottomLeft;
+            Vector2 topRight = _screenBoundsProvider.TopRight;
 
             float x = position.x;
             float y = position.y;

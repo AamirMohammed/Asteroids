@@ -10,6 +10,7 @@ namespace Asteroids.DI {
 
         protected override void Configure(IContainerBuilder builder) {
             builder.RegisterInstance(Camera.main);
+            builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();
             builder.Register<ScreenWrapCalculator>(Lifetime.Singleton);
             builder.RegisterComponent(_inputReader).As<IInputReader>();
         }
