@@ -1,0 +1,38 @@
+﻿using Asteroids.Input;
+using Asteroids.Pooling;
+using Asteroids.Projectiles;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using VContainer;
+
+namespace Asteroids.Ship {
+    public class Weapon : MonoBehaviour {
+        [SerializeField] private Transform _firePoint;
+        [SerializeField] private AssetReferenceGameObject _bulletReference;
+
+        private PoolRegistry _poolRegistry;
+        private IInputReader _inputReader;
+
+        [Inject]
+        public void Construct(PoolRegistry poolRegistry, IInputReader inputReader) {
+            _poolRegistry = poolRegistry;
+            _inputReader = inputReader;
+        }
+
+        private void OnEnable() {
+            _inputReader.ShootPressed += OnShootPressed;
+        }
+
+        private void OnDisable() {
+            _inputReader.ShootPressed -= OnShootPressed;
+        }
+
+        private void OnShootPressed() {
+            Bullet bullet = _poolRegistry.Get<Bullet>(_bulletReference);
+            if (bullet == null) {
+                return;
+            }
+            bullet.transform.SetPositionAndRotation(_firePoint.position, _firePoint.rotation);
+        }
+    }
+}

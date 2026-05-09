@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Asteroids.Pooling {
     public class PoolRegistry : MonoBehaviour {
@@ -11,9 +12,10 @@ namespace Asteroids.Pooling {
             }
         }
 
-        public PoolItem Get(string runtimeKey) {
+        public T Get<T>(AssetReference assetReference) where T : PoolItem {
+            string runtimeKey = assetReference.RuntimeKey.ToString();
             if (_pools.TryGetValue(runtimeKey, out PrefabPool pool)) {
-                return pool.GetItem();
+                return pool.GetItem() as T;
             }
 
             Debug.LogError($"No pool found for runtime key: {runtimeKey}");
