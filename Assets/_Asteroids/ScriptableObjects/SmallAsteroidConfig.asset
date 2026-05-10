@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80fe46d3d038e7f44a035a59dec2b2ec, type: 3}
-  m_Name: AsteroidConfig
+  m_Name: SmallAsteroidConfig
   m_EditorClassIdentifier: Asteroids.Game::Asteroids.Asteroid.AsteroidConfig
-  _minSpeed: 1
-  _maxSpeed: 3
-  _spawnCount: 4
   _asteroidReference:
-    m_AssetGUID: 528a6b7928a48344f934f3e283f0d829
+    m_AssetGUID: f5c5c8aae8de4d54ab3cd50761ffb2e3
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  _splitIntoConfig: {fileID: 0}
+  _minSpeed: 2
+  _maxSpeed: 4
+  _scoreValue: 100
+  _splitCount: 2

@@ -13,13 +13,10 @@ namespace Asteroids.Asteroid {
         }
 
         private readonly IScreenBoundsProvider _screenBoundsProvider;
-        private readonly IAsteroidConfig _config;
         private readonly IRandomProvider _random;
 
-        public AsteroidSpawnController(IScreenBoundsProvider screenBoundsProvider, IAsteroidConfig config,
-            IRandomProvider random) {
+        public AsteroidSpawnController(IScreenBoundsProvider screenBoundsProvider, IRandomProvider random) {
             _screenBoundsProvider = screenBoundsProvider;
-            _config = config;
             _random = random;
         }
 
@@ -48,8 +45,8 @@ namespace Asteroids.Asteroid {
             return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         }
 
-        public float GetRandomSpeed() {
-            return _random.Range(_config.MinSpeed, _config.MaxSpeed);
+        public float GetRandomSpeed(float minSpeed, float maxSpeed) {
+            return _random.Range(minSpeed, maxSpeed);
         }
     }
 }

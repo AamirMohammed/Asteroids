@@ -2,7 +2,8 @@
     public interface IAsteroidConfig {
         float MinSpeed { get; }
         float MaxSpeed { get; }
-        int SpawnCount { get; }
         int ScoreValue { get; }
+        bool CanSplit { get; }
+        int SplitCount { get; }
     }
 }

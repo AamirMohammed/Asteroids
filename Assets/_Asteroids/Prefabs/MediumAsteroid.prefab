@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3017834410438806645}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 8581305560057894147}
   - component: {fileID: 4833230815159027570}
   m_Layer: 0
-  m_Name: Asteroid
+  m_Name: MediumAsteroid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Asteroids.Game::Asteroids.Asteroid.Asteroid
   _rigidbody: {fileID: 4822848823511601922}
+  _collider2D: {fileID: 4165357458768035524}
 --- !u!114 &4833230815159027570
 MonoBehaviour:
   m_ObjectHideFlags: 0

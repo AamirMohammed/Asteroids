@@ -8,7 +8,6 @@ using UnityEngine;
 namespace Asteroids.Tests.EditMode {
     public class AsteroidSpawnControllerTests {
         private IScreenBoundsProvider _boundsProvider;
-        private IAsteroidConfig _config;
         private IRandomProvider _random;
         private AsteroidSpawnController _controller;
 
@@ -18,12 +17,8 @@ namespace Asteroids.Tests.EditMode {
             _boundsProvider.BottomLeft.Returns(new Vector2(-10f, -5f));
             _boundsProvider.TopRight.Returns(new Vector2(10f, 5f));
 
-            _config = Substitute.For<IAsteroidConfig>();
-            _config.MinSpeed.Returns(1f);
-            _config.MaxSpeed.Returns(3f);
-
             _random = Substitute.For<IRandomProvider>();
-            _controller = new AsteroidSpawnController(_boundsProvider, _config, _random);
+            _controller = new AsteroidSpawnController(_boundsProvider, _random);
         }
 
         [Test]
@@ -66,7 +61,7 @@ namespace Asteroids.Tests.EditMode {
         [TestCase(3f)]
         public void GetRandomSpeed_ReturnsValueFromRandomProvider(float speed) {
             _random.Range(1f, 3f).Returns(speed);
-            Assert.That(_controller.GetRandomSpeed(), Is.EqualTo(speed));
+            Assert.That(_controller.GetRandomSpeed(1f, 3f), Is.EqualTo(speed));
         }
     }
 }
