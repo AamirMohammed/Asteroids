@@ -37,7 +37,6 @@ namespace Asteroids.WaveSystem {
         }
 
         private void OnAsteroidDestroyed(AsteroidDestroyedData data) {
-            Debug.Log($"Asteroid destroyed, remaining: {_asteroidsRemaining}, asteroid: {data.Config.name}");
             _asteroidsRemaining--;
             if (_asteroidsRemaining <= 0) {
                 StartWave();
