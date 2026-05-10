@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Pool;
@@ -15,17 +16,15 @@ namespace Asteroids.Pooling {
         private GameObject _prefab;
         private string _runtimeKey;
         private IObjectResolver _container;
+        private readonly HashSet<PoolItem> _activeItems = new HashSet<PoolItem>();
 
-        public string RuntimeKey => _runtimeKey;
+        public string RuntimeKey => _prefabReference.RuntimeKey.ToString();
         public bool IsReady { get; private set; }
+
 
         [Inject]
         public void Construct(IObjectResolver container) {
             _container = container;
-        }
-
-        private void Awake() {
-            _runtimeKey = _prefabReference.RuntimeKey.ToString();
         }
 
         private void Start() {
@@ -68,9 +67,11 @@ namespace Asteroids.Pooling {
 
         private void Get(PoolItem item) {
             item.gameObject.SetActive(true);
+            _activeItems.Add(item);
         }
 
         private void Release(PoolItem item) {
+            _activeItems.Remove(item);
             if (item.transform.parent != transform) {
                 item.transform.SetParent(transform);
             }
@@ -84,6 +85,12 @@ namespace Asteroids.Pooling {
 
         private void OnDestroy() {
             _prefabReference.ReleaseAsset();
+        }
+
+        public void ResetPool() {
+            foreach (PoolItem item in new HashSet<PoolItem>(_activeItems)) {
+                _pool.Release(item);
+            }
         }
     }
 }

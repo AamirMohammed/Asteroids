@@ -6,18 +6,26 @@ using UnityEngine.AddressableAssets;
 
 namespace Asteroids.Pooling {
     public class PoolRegistry : MonoBehaviour {
-        public event Action OnReady;
+        public event Action Ready;
+        public bool IsReady { get; private set; }
 
         private readonly Dictionary<string, PrefabPool> _pools = new Dictionary<string, PrefabPool>();
 
-        private IEnumerator Start() {
+        public void Initialize() {
             PrefabPool[] pools = GetComponentsInChildren<PrefabPool>();
             foreach (PrefabPool pool in pools) {
-                _pools.Add(pool.RuntimeKey, pool);
+                if (!_pools.TryAdd(pool.RuntimeKey, pool)) {
+                    Debug.LogError($"Duplicate pool runtime key: {pool.RuntimeKey}", pool);
+                }
             }
 
+            StartCoroutine(WaitForPools());
+        }
+
+        private IEnumerator WaitForPools() {
             yield return new WaitUntil(AllPoolsReady);
-            OnReady?.Invoke();
+            IsReady = true;
+            Ready?.Invoke();
         }
 
         private bool AllPoolsReady() {
@@ -38,6 +46,12 @@ namespace Asteroids.Pooling {
 
             Debug.LogError($"No pool found for runtime key: {runtimeKey}");
             return null;
+        }
+
+        public void ResetAllPools() {
+            foreach (PrefabPool pool in _pools.Values) {
+                pool.ResetPool();
+            }
         }
     }
 }
