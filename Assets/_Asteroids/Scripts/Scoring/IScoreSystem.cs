@@ -5,5 +5,6 @@ namespace Asteroids.Scoring {
         int Score { get; }
         event Action<int> ScoreChanged;
         void AddScore(int points);
+        void Reset();
     }
 }
