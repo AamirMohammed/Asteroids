@@ -4,7 +4,7 @@ using UnityEngine;
 using VContainer;
 
 namespace Asteroids.Asteroid {
-    public class Asteroid : PoolItem {
+    public class AsteroidComponent : PoolItem {
         [SerializeField] private Rigidbody2D _rigidbody;
 
         private AsteroidConfig _config;

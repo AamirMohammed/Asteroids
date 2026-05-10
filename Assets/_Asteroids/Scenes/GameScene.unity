@@ -410,7 +410,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 548846352}
   - component: {fileID: 548846355}
   - component: {fileID: 548846356}
+  - component: {fileID: 548846357}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -770,6 +771,18 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+--- !u!114 &548846357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548846351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1380c21f86d09429c11528687adc9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Asteroids.Game::Asteroids.Ship.ShipCollision
 --- !u!1 &765361685
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +907,8 @@ MonoBehaviour:
   _asteroidSpawner: {fileID: 164873227}
   _scoreView: {fileID: 1159050686}
   _waveConfig: {fileID: 11400000, guid: ac87a40941dd21f4d8a72eaf75fc2ccd, type: 2}
+  _shipMovement: {fileID: 548846352}
+  _playerConfig: {fileID: 11400000, guid: f2a4ac7c9437b04419531c6d26f74161, type: 2}
 --- !u!4 &817925758
 Transform:
   m_ObjectHideFlags: 0

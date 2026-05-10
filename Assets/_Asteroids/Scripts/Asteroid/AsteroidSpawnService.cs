@@ -57,17 +57,17 @@ namespace Asteroids.Asteroid {
         }
 
         private void SpawnAsteroid(AssetReferenceGameObject prefabReference, IAsteroidConfig config, Vector2 position) {
-            Asteroid asteroid = _poolRegistry.Get<Asteroid>(prefabReference);
-            if (asteroid == null) {
+            AsteroidComponent asteroidComponent = _poolRegistry.Get<AsteroidComponent>(prefabReference);
+            if (asteroidComponent == null) {
                 return;
             }
 
-            asteroid.transform.position = position;
-            asteroid.Init(
+            asteroidComponent.transform.position = position;
+            asteroidComponent.Init(
                 _spawnController.GetRandomDirection(),
                 _spawnController.GetRandomSpeed(config.MinSpeed, config.MaxSpeed),
                 config as AsteroidConfig);
-            asteroid.gameObject.SetActive(true);
+            asteroidComponent.gameObject.SetActive(true);
         }
 
         private AssetReferenceGameObject GetPrefabReference(IAsteroidConfig config) {
