@@ -1,3 +1,4 @@
+using Asteroids.Asteroid;
 using Asteroids.Scoring;
 using NUnit.Framework;
 
@@ -7,7 +8,14 @@ namespace Asteroids.Tests.EditMode {
 
         [SetUp]
         public void Setup() {
-            _scoreSystem = new ScoreSystem();
+            AsteroidDestroyedChannel channel = new AsteroidDestroyedChannel();
+            _scoreSystem = new ScoreSystem(channel);
+            _scoreSystem.Initialize();
+        }
+
+        [TearDown]
+        public void TearDown() {
+            _scoreSystem.Dispose();
         }
 
         [Test]
