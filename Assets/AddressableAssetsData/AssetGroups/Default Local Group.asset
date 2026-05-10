@@ -21,7 +21,17 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 528a6b7928a48344f934f3e283f0d829
-    m_Address: Asteroid
+    m_Address: LargeAsteroid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b90535c746bf76498358de7eb5bac17
+    m_Address: MediumAsteroid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5c5c8aae8de4d54ab3cd50761ffb2e3
+    m_Address: SmallAsteroid
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
