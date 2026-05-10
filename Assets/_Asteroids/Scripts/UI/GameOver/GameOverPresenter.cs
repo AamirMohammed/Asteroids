@@ -7,9 +7,9 @@ namespace Asteroids.UI.GameOver {
     public class GameOverPresenter : IInitializable, IDisposable {
         private readonly IHealth _health;
         private readonly IGameOverView _view;
-        private readonly GameStateService _gameStateService;
+        private readonly IGameStateService _gameStateService;
 
-        public GameOverPresenter(IHealth health, IGameOverView view, GameStateService gameStateService) {
+        public GameOverPresenter(IHealth health, IGameOverView view, IGameStateService gameStateService) {
             _health = health;
             _view = view;
             _gameStateService = gameStateService;

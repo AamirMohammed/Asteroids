@@ -8,7 +8,7 @@ using UnityEngine;
 using VContainer.Unity;
 
 namespace Asteroids.Core {
-    public class GameStateService : IInitializable, ITickable {
+    public class GameStateService : IInitializable, ITickable, IGameStateService {
         private readonly StateMachine _stateMachine;
         private readonly IHealth _health;
         private readonly IScoreSystem _scoreSystem;
