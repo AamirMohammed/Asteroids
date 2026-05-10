@@ -4,9 +4,9 @@ using VContainer.Unity;
 namespace Asteroids.Core {
     public class Bootstrapper : IStartable {
         private readonly PoolRegistry _poolRegistry;
-        private readonly WaveSystem.WaveSystem _waveSystem;
+        private readonly Wave.WaveSystem _waveSystem;
 
-        public Bootstrapper(PoolRegistry poolRegistry, WaveSystem.WaveSystem waveSystem) {
+        public Bootstrapper(PoolRegistry poolRegistry, Wave.WaveSystem waveSystem) {
             _poolRegistry = poolRegistry;
             _waveSystem = waveSystem;
         }

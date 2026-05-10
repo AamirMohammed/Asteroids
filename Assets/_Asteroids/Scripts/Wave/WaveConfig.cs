@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Asteroids.WaveSystem {
+namespace Asteroids.Wave {
     [CreateAssetMenu(fileName = "WaveConfig", menuName = "Asteroids/Wave Config")]
-    public class WaveConfig : ScriptableObject {
+    public class WaveConfig : ScriptableObject, IWaveConfig {
         [SerializeField] private int[] _asteroidCountPerWave = { 4, 6, 8, 10, 11 };
 
         public int GetAsteroidCount(int wave) {

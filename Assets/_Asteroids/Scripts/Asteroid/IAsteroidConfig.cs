@@ -3,7 +3,9 @@
         float MinSpeed { get; }
         float MaxSpeed { get; }
         int ScoreValue { get; }
+        IAsteroidConfig SplitIntoConfig { get; }
         bool CanSplit { get; }
         int SplitCount { get; }
+        string name { get; }
     }
 }

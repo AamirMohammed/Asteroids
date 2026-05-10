@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 using VContainer.Unity;
 
 namespace Asteroids.Asteroid {
-    public class AsteroidSpawnService : IInitializable, IDisposable {
+    public class AsteroidSpawnService : IInitializable, IDisposable, IAsteroidSpawnService {
         private readonly PoolRegistry _poolRegistry;
         private readonly IAsteroidSpawner _asteroidSpawner;
         private readonly AsteroidDestroyedChannel _destroyedChannel;
@@ -30,7 +30,7 @@ namespace Asteroids.Asteroid {
             _destroyedChannel.Published -= OnAsteroidDestroyed;
         }
 
-        public void SpawnWave(int count, AsteroidConfig config) {
+        public void SpawnWave(int count, IAsteroidConfig config) {
             AssetReferenceGameObject prefab = GetPrefabReference(config);
             if (prefab == null) {
                 return;
@@ -56,7 +56,7 @@ namespace Asteroids.Asteroid {
             }
         }
 
-        private void SpawnAsteroid(AssetReferenceGameObject prefabReference, AsteroidConfig config, Vector2 position) {
+        private void SpawnAsteroid(AssetReferenceGameObject prefabReference, IAsteroidConfig config, Vector2 position) {
             Asteroid asteroid = _poolRegistry.Get<Asteroid>(prefabReference);
             if (asteroid == null) {
                 return;
@@ -66,17 +66,18 @@ namespace Asteroids.Asteroid {
             asteroid.Init(
                 _spawnController.GetRandomDirection(),
                 _spawnController.GetRandomSpeed(config.MinSpeed, config.MaxSpeed),
-                config);
+                config as AsteroidConfig);
+            asteroid.gameObject.SetActive(true);
         }
 
-        private AssetReferenceGameObject GetPrefabReference(AsteroidConfig config) {
+        private AssetReferenceGameObject GetPrefabReference(IAsteroidConfig config) {
             foreach (AsteroidPrefabEntry entry in _asteroidSpawner.PrefabEntries) {
-                if (entry.Config == config) {
+                if (ReferenceEquals(entry.Config, config)) {
                     return entry.PrefabReference;
                 }
             }
 
-            Debug.LogError($"No prefab found for config: {config.name}");
+            Debug.LogError($"No prefab found for config: {config}");
             return null;
         }
     }

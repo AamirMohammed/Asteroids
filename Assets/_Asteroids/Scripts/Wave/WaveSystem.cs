@@ -1,20 +1,19 @@
 using System;
 using Asteroids.Asteroid;
-using UnityEngine;
 using VContainer.Unity;
 
-namespace Asteroids.WaveSystem {
+namespace Asteroids.Wave {
     public class WaveSystem : IInitializable, IDisposable {
-        private readonly AsteroidSpawnService _spawnService;
+        private readonly IAsteroidSpawnService _spawnService;
         private readonly AsteroidDestroyedChannel _destroyedChannel;
-        private readonly AsteroidConfig _largeAsteroidConfig;
-        private readonly WaveConfig _waveConfig;
+        private readonly IAsteroidConfig  _largeAsteroidConfig;
+        private readonly IWaveConfig _waveConfig;
 
         private int _asteroidsRemaining;
         private int _currentWave;
 
-        public WaveSystem(AsteroidSpawnService spawnService, AsteroidDestroyedChannel destroyedChannel,
-            AsteroidConfig largeAsteroidConfig, WaveConfig waveConfig) {
+        public WaveSystem(IAsteroidSpawnService spawnService, AsteroidDestroyedChannel destroyedChannel,
+            IAsteroidConfig  largeAsteroidConfig, IWaveConfig waveConfig) {
             _spawnService = spawnService;
             _destroyedChannel = destroyedChannel;
             _largeAsteroidConfig = largeAsteroidConfig;
@@ -43,10 +42,10 @@ namespace Asteroids.WaveSystem {
             }
         }
 
-        private int CalculateTotalAsteroids(AsteroidConfig config, int count) {
+        private int CalculateTotalAsteroids(IAsteroidConfig config, int count) {
             int total = 0;
             int currentCount = count;
-            AsteroidConfig currentConfig = config;
+            IAsteroidConfig currentConfig = config;
 
             while (currentConfig != null) {
                 total += currentCount;
