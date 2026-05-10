@@ -1,12 +1,10 @@
 ﻿using Asteroids.HealthSystem;
 using Asteroids.Ship;
-using Asteroids.Wave;
 using FSM;
 using UnityEngine;
 
 namespace Asteroids.Core {
     public class PlayingState : IState {
-        private readonly WaveSystem _waveSystem;
         private readonly IHealth _health;
         private readonly ShipMovement _shipMovement;
 
@@ -14,15 +12,14 @@ namespace Asteroids.Core {
         private float _respawnTimer;
         private const float RespawnDelay = 2f;
 
-        public PlayingState(WaveSystem waveSystem, IHealth health, ShipMovement shipMovement) {
-            _waveSystem = waveSystem;
+        public PlayingState(IHealth health, ShipMovement shipMovement) {
             _health = health;
             _shipMovement = shipMovement;
         }
 
         public void OnEnter() {
+            _isRespawning = false;
             _health.LivesChanged += OnLivesChanged;
-            _waveSystem.StartWave();
         }
 
         public void OnExit() {

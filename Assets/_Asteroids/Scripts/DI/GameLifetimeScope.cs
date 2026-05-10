@@ -7,6 +7,7 @@ using Asteroids.Randomization;
 using Asteroids.Scoring;
 using Asteroids.ScreenWrap;
 using Asteroids.Ship;
+using Asteroids.UI.GameOver;
 using Asteroids.UI.HUD;
 using Asteroids.Wave;
 using UnityEngine;
@@ -23,13 +24,15 @@ namespace Asteroids.DI {
         [SerializeField] private WaveConfig _waveConfig;
         [SerializeField] private ShipMovement _shipMovement;
         [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private GameOverView _gameOverView;
 
         protected override void Configure(IContainerBuilder builder) {
             builder.RegisterEntryPoint<ScorePresenter>();
             builder.RegisterEntryPoint<ScoreSystem>().As<IScoreSystem>();
             builder.RegisterEntryPoint<AsteroidSpawnService>().As<IAsteroidSpawnService>();
             builder.RegisterEntryPoint<WaveSystem>().AsSelf();
-            builder.RegisterEntryPoint<GameStateService>();
+            builder.RegisterEntryPoint<GameStateService>().AsSelf();
+            builder.RegisterEntryPoint<GameOverPresenter>();
             builder.RegisterInstance(_waveConfig).As<IWaveConfig>();
             builder.RegisterInstance(Camera.main);
             builder.RegisterInstance(_largeAsteroidConfig).As<IAsteroidConfig>();
@@ -40,12 +43,14 @@ namespace Asteroids.DI {
             builder.Register<UnityRandomProvider>(Lifetime.Singleton).As<IRandomProvider>();
             builder.Register<AsteroidDestroyedChannel>(Lifetime.Singleton);
             builder.Register<Health>(Lifetime.Singleton).As<IHealth>();
+            builder.Register<BootState>(Lifetime.Singleton);
             builder.Register<PlayingState>(Lifetime.Singleton);
             builder.Register<GameOverState>(Lifetime.Singleton);
             builder.RegisterComponent(_inputReader).As<IInputReader>();
             builder.RegisterComponent(_poolRegistry);
             builder.RegisterComponent(_asteroidSpawner).As<IAsteroidSpawner>();
             builder.RegisterComponent(_scoreView).As<IScoreView>();
+            builder.RegisterComponent(_gameOverView).As<IGameOverView>();
         }
     }
 }
