@@ -1,15 +1,14 @@
-using Asteroids.Asteroid;
 using Asteroids.Pooling;
 using VContainer.Unity;
 
 namespace Asteroids.Core {
     public class Bootstrapper : IStartable {
         private readonly PoolRegistry _poolRegistry;
-        private readonly AsteroidSpawner _asteroidSpawner;
+        private readonly WaveSystem.WaveSystem _waveSystem;
 
-        public Bootstrapper(PoolRegistry poolRegistry, AsteroidSpawner asteroidSpawner) {
+        public Bootstrapper(PoolRegistry poolRegistry, WaveSystem.WaveSystem waveSystem) {
             _poolRegistry = poolRegistry;
-            _asteroidSpawner = asteroidSpawner;
+            _waveSystem = waveSystem;
         }
 
         public void Start() {
@@ -18,7 +17,7 @@ namespace Asteroids.Core {
 
         private void OnPoolsReady() {
             _poolRegistry.OnReady -= OnPoolsReady;
-            _asteroidSpawner.SpawnWave();
+            _waveSystem.StartWave();
         }
     }
 }
