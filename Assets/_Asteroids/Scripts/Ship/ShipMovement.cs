@@ -44,9 +44,16 @@ namespace Asteroids.Ship {
         }
 
         public void Teleport(Vector3 position) {
+            ResetVelocity();
+            _rigidbody2D.position = position;
+            _rigidbody2D.rotation = 0f;
+        }
+
+        private void ResetVelocity() {
             _rigidbody2D.linearVelocity = Vector2.zero;
             _rigidbody2D.angularVelocity = 0f;
-            _rigidbody2D.MovePosition(position);
+            _isThrusting = false;
+            _rotationInput = 0f;
         }
 
         private void OnThrustInput(bool isThrusting) {
