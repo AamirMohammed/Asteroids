@@ -45,6 +45,7 @@ namespace Asteroids.Pooling {
                 actionOnRelease: Release,
                 actionOnDestroy: DestroyItem,
                 defaultCapacity: _defaultCapacity,
+                collectionCheck: false,
                 maxSize: _maxSize
             );
             IsReady = true;
