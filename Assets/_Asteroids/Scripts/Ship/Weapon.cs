@@ -32,7 +32,8 @@ namespace Asteroids.Ship {
             if (bullet == null) {
                 return;
             }
-            bullet.transform.SetPositionAndRotation(_firePoint.position, _firePoint.rotation);
+
+            bullet.Initialize(_firePoint.position, _firePoint.rotation);
         }
     }
 }

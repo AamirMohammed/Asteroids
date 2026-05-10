@@ -11,6 +11,10 @@ namespace Asteroids.Projectiles {
             _controller = new BulletController(_config);
         }
 
+        public void Initialize(Vector3 position, Quaternion rotation) {
+            transform.SetPositionAndRotation(position, rotation);
+        }
+
         private void OnEnable() {
             _controller.Reset();
         }
