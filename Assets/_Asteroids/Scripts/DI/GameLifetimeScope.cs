@@ -5,6 +5,7 @@ using Asteroids.Pooling;
 using Asteroids.Randomization;
 using Asteroids.Scoring;
 using Asteroids.ScreenWrap;
+using Asteroids.UI.HUD;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -14,9 +15,11 @@ namespace Asteroids.DI {
         [SerializeField] private InputReader _inputReader;
         [SerializeField] private PoolRegistry _poolRegistry;
         [SerializeField] private AsteroidConfig _asteroidConfig;
+        [SerializeField] private ScoreView _scoreView;
 
         protected override void Configure(IContainerBuilder builder) {
             builder.RegisterEntryPoint<Bootstrapper>();
+            builder.RegisterEntryPoint<ScorePresenter>();
             builder.RegisterInstance(Camera.main);
             builder.RegisterInstance(_asteroidConfig).As<IAsteroidConfig>();
             builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();
@@ -26,6 +29,7 @@ namespace Asteroids.DI {
             builder.Register<ScoreSystem>(Lifetime.Singleton).As<IScoreSystem>();
             builder.RegisterComponent(_inputReader).As<IInputReader>();
             builder.RegisterComponent(_poolRegistry);
+            builder.RegisterComponent(_scoreView).As<IScoreView>();
         }
     }
 }
