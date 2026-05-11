@@ -32,7 +32,6 @@ namespace Asteroids.Wave {
         public void StartWave() {
             _currentWave++;
             int count = _waveConfig.GetAsteroidCount(_currentWave);
-            Debug.Log("Starting wave " + _currentWave +" " + count);
             _asteroidsRemaining = CalculateTotalAsteroids(_largeAsteroidConfig, count);
             _spawnService.SpawnWave(count, _largeAsteroidConfig);
         }
