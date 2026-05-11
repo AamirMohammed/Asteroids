@@ -22,7 +22,7 @@ namespace Asteroids.Asteroid {
 
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (!other.TryGetComponent(out Bullet bullet)) {
+            if (!other.TryGetComponent(out BulletComponent bullet)) {
                 return;
             }
 

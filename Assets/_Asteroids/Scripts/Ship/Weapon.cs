@@ -28,12 +28,12 @@ namespace Asteroids.Ship {
         }
 
         private void OnShootPressed() {
-            Bullet bullet = _poolRegistry.Get<Bullet>(_bulletReference);
-            if (bullet == null) {
+            BulletComponent bulletComponent = _poolRegistry.Get<BulletComponent>(_bulletReference);
+            if (bulletComponent == null) {
                 return;
             }
 
-            bullet.Initialize(_firePoint.position, _firePoint.rotation);
+            bulletComponent.Initialize(_firePoint.position, _firePoint.rotation);
         }
     }
 }
