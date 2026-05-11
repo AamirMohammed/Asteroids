@@ -4,7 +4,6 @@ using Asteroids.Scoring;
 using Asteroids.Ship;
 using Asteroids.Wave;
 using FSM;
-using UnityEngine;
 using VContainer.Unity;
 
 namespace Asteroids.Core {
@@ -12,7 +11,7 @@ namespace Asteroids.Core {
         private readonly StateMachine _stateMachine;
         private readonly IHealth _health;
         private readonly IScoreSystem _scoreSystem;
-        private readonly IShip _ship;
+        private readonly IShipSpawnService _shipSpawnService;
         private readonly WaveSystem _waveSystem;
         private readonly PoolRegistry _poolRegistry;
 
@@ -22,14 +21,12 @@ namespace Asteroids.Core {
 
         public GameStateService(
             IHealth health, IScoreSystem scoreSystem,
-            IShip ship, WaveSystem waveSystem,
-            PoolRegistry poolRegistry,
-            BootState bootState,
-            PlayingState playingState,
-            GameOverState gameOverState) {
+            IShipSpawnService shipSpawnService, WaveSystem waveSystem,
+            PoolRegistry poolRegistry, BootState bootState,
+            PlayingState playingState, GameOverState gameOverState) {
             _health = health;
             _scoreSystem = scoreSystem;
-            _ship = ship;
+            _shipSpawnService = shipSpawnService;
             _waveSystem = waveSystem;
             _poolRegistry = poolRegistry;
             _bootState = bootState;
@@ -52,8 +49,7 @@ namespace Asteroids.Core {
             _health.Reset();
             _scoreSystem.Reset();
             _waveSystem.Reset();
-            _ship.Show();
-            _ship.Teleport(Vector3.zero);
+            _shipSpawnService.Spawn();
             _waveSystem.StartWave();
             _stateMachine.SetState(_playingState);
         }

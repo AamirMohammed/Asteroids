@@ -2,17 +2,16 @@
 using Asteroids.Ship;
 using Asteroids.Wave;
 using FSM;
-using UnityEngine;
 
 namespace Asteroids.Core {
     public class BootState : IState {
         private readonly PoolRegistry _poolRegistry;
-        private readonly IShip _ship;
+        private readonly IShipSpawnService _shipSpawnService;
         private readonly WaveSystem _waveSystem;
 
-        public BootState(PoolRegistry poolRegistry, IShip ship, WaveSystem waveSystem) {
+        public BootState(PoolRegistry poolRegistry, IShipSpawnService shipSpawnService, WaveSystem waveSystem) {
             _poolRegistry = poolRegistry;
-            _ship = ship;
+            _shipSpawnService = shipSpawnService;
             _waveSystem = waveSystem;
         }
 
@@ -21,16 +20,11 @@ namespace Asteroids.Core {
         }
 
         public void OnExit() {
-            StartGame();
+            _shipSpawnService.Spawn();
+            _waveSystem.StartWave();
         }
 
         public void Tick() {
-        }
-
-        private void StartGame() {
-            _ship.Show();
-            _ship.Teleport(Vector3.zero);
-            _waveSystem.StartWave();
         }
     }
 }

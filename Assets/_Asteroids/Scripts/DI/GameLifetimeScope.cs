@@ -34,6 +34,7 @@ namespace Asteroids.DI {
             builder.RegisterEntryPoint<WaveSystem>().AsSelf();
             builder.RegisterEntryPoint<GameStateService>().As<IGameStateService>();
             builder.RegisterEntryPoint<GameOverPresenter>();
+            builder.RegisterEntryPoint<ShipSpawnService>().As<IShipSpawnService>();
             builder.RegisterInstance(_waveConfig).As<IWaveConfig>();
             builder.RegisterInstance(Camera.main);
             builder.RegisterInstance(_largeAsteroidConfig).As<IAsteroidConfig>();

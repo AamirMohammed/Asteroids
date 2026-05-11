@@ -1,24 +1,18 @@
 ﻿using Asteroids.HealthSystem;
 using Asteroids.Ship;
 using FSM;
-using UnityEngine;
 
 namespace Asteroids.Core {
     public class PlayingState : IState {
         private readonly IHealth _health;
-        private readonly IShip _ship;
+        private readonly IShipSpawnService _shipSpawnService;
 
-        private bool _isRespawning;
-        private float _respawnTimer;
-        private const float RespawnDelay = 2f;
-
-        public PlayingState(IHealth health, IShip ship) {
+        public PlayingState(IHealth health, IShipSpawnService shipSpawnService) {
             _health = health;
-            _ship = ship;
+            _shipSpawnService = shipSpawnService;
         }
 
         public void OnEnter() {
-            _isRespawning = false;
             _health.LivesChanged += OnLivesChanged;
         }
 
@@ -27,22 +21,10 @@ namespace Asteroids.Core {
         }
 
         public void Tick() {
-            if (!_isRespawning) {
-                return;
-            }
-
-            _respawnTimer -= Time.deltaTime;
-            if (_respawnTimer <= 0f) {
-                _isRespawning = false;
-                _ship.Show();
-                _ship.Teleport(Vector3.zero);
-            }
         }
 
         private void OnLivesChanged(int lives) {
-            _ship.Hide();
-            _isRespawning = true;
-            _respawnTimer = RespawnDelay;
+            _shipSpawnService.ScheduleRespawn();
         }
     }
 }
