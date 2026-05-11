@@ -18,8 +18,8 @@ namespace Asteroids.Projectiles {
             return _elapsedTime >= _config.Lifetime;
         }
 
-        public Vector2 GetMovement(float deltaTime) {
-            return Vector2.up * (_config.Speed * deltaTime);
+        public Vector2 GetMovement(float deltaTime, Vector2 direction) {
+            return direction * (_config.Speed * deltaTime);
         }
     }
 }
