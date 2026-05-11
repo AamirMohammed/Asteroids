@@ -51,6 +51,7 @@ namespace Asteroids.Core {
         public void Restart() {
             _health.Reset();
             _scoreSystem.Reset();
+            _waveSystem.Reset();
             _shipMovement.gameObject.SetActive(true);
             _shipMovement.Teleport(Vector3.zero);
             _waveSystem.StartWave();

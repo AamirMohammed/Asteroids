@@ -1,5 +1,6 @@
 using System;
 using Asteroids.Asteroid;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace Asteroids.Wave {
@@ -31,6 +32,7 @@ namespace Asteroids.Wave {
         public void StartWave() {
             _currentWave++;
             int count = _waveConfig.GetAsteroidCount(_currentWave);
+            Debug.Log("Starting wave " + _currentWave +" " + count);
             _asteroidsRemaining = CalculateTotalAsteroids(_largeAsteroidConfig, count);
             _spawnService.SpawnWave(count, _largeAsteroidConfig);
         }
@@ -54,6 +56,9 @@ namespace Asteroids.Wave {
             }
 
             return total;
+        }
+        public void Reset() {
+            _currentWave = 0;
         }
     }
 }
