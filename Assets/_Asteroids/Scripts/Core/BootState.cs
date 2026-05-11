@@ -7,12 +7,12 @@ using UnityEngine;
 namespace Asteroids.Core {
     public class BootState : IState {
         private readonly PoolRegistry _poolRegistry;
-        private readonly ShipMovement _shipMovement;
+        private readonly IShip _ship;
         private readonly WaveSystem _waveSystem;
 
-        public BootState(PoolRegistry poolRegistry, ShipMovement shipMovement, WaveSystem waveSystem) {
+        public BootState(PoolRegistry poolRegistry, IShip ship, WaveSystem waveSystem) {
             _poolRegistry = poolRegistry;
-            _shipMovement = shipMovement;
+            _ship = ship;
             _waveSystem = waveSystem;
         }
 
@@ -28,8 +28,8 @@ namespace Asteroids.Core {
         }
 
         private void StartGame() {
-            _shipMovement.gameObject.SetActive(true);
-            _shipMovement.Teleport(Vector3.zero);
+            _ship.Show();
+            _ship.Teleport(Vector3.zero);
             _waveSystem.StartWave();
         }
     }

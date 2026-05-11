@@ -21,7 +21,7 @@ namespace Asteroids.DI {
         [SerializeField] private AsteroidConfig _largeAsteroidConfig;
         [SerializeField] private AsteroidSpawner _asteroidSpawner;
         [SerializeField] private WaveConfig _waveConfig;
-        [SerializeField] private ShipMovement _shipMovement;
+        [SerializeField] private ShipComponent _shipComponent;
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private GameOverView _gameOverView;
         [SerializeField] private ScoreView _scoreView;
@@ -38,7 +38,7 @@ namespace Asteroids.DI {
             builder.RegisterInstance(_waveConfig).As<IWaveConfig>();
             builder.RegisterInstance(Camera.main);
             builder.RegisterInstance(_largeAsteroidConfig).As<IAsteroidConfig>();
-            builder.RegisterInstance(_shipMovement);
+            builder.RegisterInstance(_shipComponent).As<IShip>();
             builder.RegisterInstance(_playerConfig).As<IPlayerConfig>();
             builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();
             builder.Register<ScreenWrapCalculator>(Lifetime.Singleton);

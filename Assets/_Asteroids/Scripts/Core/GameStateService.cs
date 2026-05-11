@@ -12,7 +12,7 @@ namespace Asteroids.Core {
         private readonly StateMachine _stateMachine;
         private readonly IHealth _health;
         private readonly IScoreSystem _scoreSystem;
-        private readonly ShipMovement _shipMovement;
+        private readonly IShip _ship;
         private readonly WaveSystem _waveSystem;
         private readonly PoolRegistry _poolRegistry;
 
@@ -22,14 +22,14 @@ namespace Asteroids.Core {
 
         public GameStateService(
             IHealth health, IScoreSystem scoreSystem,
-            ShipMovement shipMovement, WaveSystem waveSystem,
+            IShip ship, WaveSystem waveSystem,
             PoolRegistry poolRegistry,
             BootState bootState,
             PlayingState playingState,
             GameOverState gameOverState) {
             _health = health;
             _scoreSystem = scoreSystem;
-            _shipMovement = shipMovement;
+            _ship = ship;
             _waveSystem = waveSystem;
             _poolRegistry = poolRegistry;
             _bootState = bootState;
@@ -52,8 +52,8 @@ namespace Asteroids.Core {
             _health.Reset();
             _scoreSystem.Reset();
             _waveSystem.Reset();
-            _shipMovement.gameObject.SetActive(true);
-            _shipMovement.Teleport(Vector3.zero);
+            _ship.Show();
+            _ship.Teleport(Vector3.zero);
             _waveSystem.StartWave();
             _stateMachine.SetState(_playingState);
         }

@@ -822,6 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548846354}
   - component: {fileID: 548846353}
+  - component: {fileID: 548846358}
   - component: {fileID: 548846352}
   - component: {fileID: 548846355}
   - component: {fileID: 548846356}
@@ -935,6 +936,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1380c21f86d09429c11528687adc9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Asteroids.Game::Asteroids.Ship.ShipCollision
+--- !u!114 &548846358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548846351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d241a6e24f940138b4929b7df60d8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Asteroids.Game::Asteroids.Ship.ShipComponent
+  _shipMovement: {fileID: 548846352}
 --- !u!1 &765361685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1072,7 @@ MonoBehaviour:
   _largeAsteroidConfig: {fileID: 11400000, guid: 8ca16fe14e68c80479b80bbcb69a6e8f, type: 2}
   _asteroidSpawner: {fileID: 164873227}
   _waveConfig: {fileID: 11400000, guid: ac87a40941dd21f4d8a72eaf75fc2ccd, type: 2}
-  _shipMovement: {fileID: 548846352}
+  _shipComponent: {fileID: 548846358}
   _playerConfig: {fileID: 11400000, guid: f2a4ac7c9437b04419531c6d26f74161, type: 2}
   _gameOverView: {fileID: 1228140652}
   _scoreView: {fileID: 1159050686}

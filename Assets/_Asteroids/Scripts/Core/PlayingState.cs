@@ -6,15 +6,15 @@ using UnityEngine;
 namespace Asteroids.Core {
     public class PlayingState : IState {
         private readonly IHealth _health;
-        private readonly ShipMovement _shipMovement;
+        private readonly IShip _ship;
 
         private bool _isRespawning;
         private float _respawnTimer;
         private const float RespawnDelay = 2f;
 
-        public PlayingState(IHealth health, ShipMovement shipMovement) {
+        public PlayingState(IHealth health, IShip ship) {
             _health = health;
-            _shipMovement = shipMovement;
+            _ship = ship;
         }
 
         public void OnEnter() {
@@ -34,13 +34,13 @@ namespace Asteroids.Core {
             _respawnTimer -= Time.deltaTime;
             if (_respawnTimer <= 0f) {
                 _isRespawning = false;
-                _shipMovement.gameObject.SetActive(true);
-                _shipMovement.Teleport(Vector3.zero);
+                _ship.Show();
+                _ship.Teleport(Vector3.zero);
             }
         }
 
         private void OnLivesChanged(int lives) {
-            _shipMovement.gameObject.SetActive(false);
+            _ship.Hide();
             _isRespawning = true;
             _respawnTimer = RespawnDelay;
         }
