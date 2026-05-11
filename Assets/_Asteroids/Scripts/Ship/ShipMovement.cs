@@ -45,6 +45,7 @@ namespace Asteroids.Ship {
 
         public void Teleport(Vector3 position) {
             ResetVelocity();
+            transform.SetPositionAndRotation(position, Quaternion.identity);
             _rigidbody2D.position = position;
             _rigidbody2D.rotation = 0f;
         }
