@@ -7,7 +7,7 @@ namespace Asteroids.Asteroid {
     public class AsteroidComponent : PoolItem {
         [SerializeField] private Rigidbody2D _rigidbody;
 
-        private AsteroidConfig _config;
+        private IAsteroidConfig _config;
         private AsteroidDestroyedChannel _destroyedChannel;
 
         [Inject]
@@ -15,7 +15,7 @@ namespace Asteroids.Asteroid {
             _destroyedChannel = destroyedChannel;
         }
 
-        public void Init(Vector2 direction, float speed, AsteroidConfig config) {
+        public void Init(Vector2 direction, float speed, IAsteroidConfig config) {
             _rigidbody.linearVelocity = direction * speed;
             _config = config;
         }

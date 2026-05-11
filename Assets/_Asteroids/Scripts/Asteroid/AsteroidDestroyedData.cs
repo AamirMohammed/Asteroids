@@ -2,7 +2,7 @@
 
 namespace Asteroids.Asteroid {
     public struct AsteroidDestroyedData {
-        public AsteroidConfig Config;
+        public IAsteroidConfig Config;
         public Vector2 Position;
     }
 }
