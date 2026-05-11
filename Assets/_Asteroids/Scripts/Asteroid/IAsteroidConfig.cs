@@ -1,4 +1,6 @@
-﻿namespace Asteroids.Asteroid {
+﻿using UnityEngine.AddressableAssets;
+
+namespace Asteroids.Asteroid {
     public interface IAsteroidConfig {
         float MinSpeed { get; }
         float MaxSpeed { get; }
@@ -6,6 +8,6 @@
         IAsteroidConfig SplitIntoConfig { get; }
         bool CanSplit { get; }
         int SplitCount { get; }
-        string name { get; }
+        AssetReferenceGameObject PrefabReference { get; }
     }
 }

@@ -119,72 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &164873226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 164873228}
-  - component: {fileID: 164873227}
-  m_Layer: 0
-  m_Name: AsteroidSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &164873227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164873226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e70fbc37aabf61f45b320a97e39889d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Asteroids.Game::Asteroids.Asteroid.AsteroidSpawner
-  _prefabEntries:
-  - Config: {fileID: 11400000, guid: 8ca16fe14e68c80479b80bbcb69a6e8f, type: 2}
-    PrefabReference:
-      m_AssetGUID: 528a6b7928a48344f934f3e283f0d829
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0
-  - Config: {fileID: 11400000, guid: 48f8ea2dcb3ac9b4da7111705a459442, type: 2}
-    PrefabReference:
-      m_AssetGUID: 8b90535c746bf76498358de7eb5bac17
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0
-  - Config: {fileID: 11400000, guid: e589e1f44bed533448246149ae5b5536, type: 2}
-    PrefabReference:
-      m_AssetGUID: f5c5c8aae8de4d54ab3cd50761ffb2e3
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0
---- !u!4 &164873228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164873226}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130.04903, y: 742.843, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187919947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1004,6 @@ MonoBehaviour:
   _inputReader: {fileID: 1586291432}
   _poolRegistry: {fileID: 507262498}
   _largeAsteroidConfig: {fileID: 11400000, guid: 8ca16fe14e68c80479b80bbcb69a6e8f, type: 2}
-  _asteroidSpawner: {fileID: 164873227}
   _waveConfig: {fileID: 11400000, guid: ac87a40941dd21f4d8a72eaf75fc2ccd, type: 2}
   _shipComponent: {fileID: 548846358}
   _playerConfig: {fileID: 11400000, guid: f2a4ac7c9437b04419531c6d26f74161, type: 2}
@@ -2457,7 +2390,6 @@ SceneRoots:
   - {fileID: 507262499}
   - {fileID: 383876367}
   - {fileID: 1586291433}
-  - {fileID: 164873228}
   - {fileID: 548846354}
   - {fileID: 215736783}
   - {fileID: 1140788364}

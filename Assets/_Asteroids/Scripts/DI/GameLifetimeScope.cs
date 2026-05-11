@@ -19,7 +19,6 @@ namespace Asteroids.DI {
         [SerializeField] private InputReader _inputReader;
         [SerializeField] private PoolRegistry _poolRegistry;
         [SerializeField] private AsteroidConfig _largeAsteroidConfig;
-        [SerializeField] private AsteroidSpawner _asteroidSpawner;
         [SerializeField] private WaveConfig _waveConfig;
         [SerializeField] private ShipComponent _shipComponent;
         [SerializeField] private PlayerConfig _playerConfig;
@@ -48,9 +47,9 @@ namespace Asteroids.DI {
             builder.Register<BootState>(Lifetime.Singleton);
             builder.Register<PlayingState>(Lifetime.Singleton);
             builder.Register<GameOverState>(Lifetime.Singleton);
+            builder.Register<AsteroidSpawnController>(Lifetime.Singleton);
             builder.RegisterComponent(_inputReader).As<IInputReader>();
             builder.RegisterComponent(_poolRegistry);
-            builder.RegisterComponent(_asteroidSpawner).As<IAsteroidSpawner>();
             builder.RegisterComponent(_scoreView).As<IScoreView>();
             builder.RegisterComponent(_livesView).As<ILivesView>();
             builder.RegisterComponent(_gameOverView).As<IGameOverView>();

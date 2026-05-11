@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80fe46d3d038e7f44a035a59dec2b2ec, type: 3}
   m_Name: LargeAsteroidConfig
   m_EditorClassIdentifier: Asteroids.Game::Asteroids.Asteroid.AsteroidConfig
-  _asteroidReference:
+  _minSpeed: 1
+  _maxSpeed: 3
+  _scoreValue: 20
+  _splitCount: 2
+  _splitIntoConfig: {fileID: 11400000, guid: 48f8ea2dcb3ac9b4da7111705a459442, type: 2}
+  _prefabReference:
     m_AssetGUID: 528a6b7928a48344f934f3e283f0d829
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  _splitIntoConfig: {fileID: 11400000, guid: 48f8ea2dcb3ac9b4da7111705a459442, type: 2}
-  _minSpeed: 1
-  _maxSpeed: 3
-  _scoreValue: 20
-  _splitCount: 2
