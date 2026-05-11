@@ -12,7 +12,7 @@ namespace Asteroids.Core {
         private readonly IHealth _health;
         private readonly IScoreSystem _scoreSystem;
         private readonly IShipSpawnService _shipSpawnService;
-        private readonly WaveSystem _waveSystem;
+        private readonly IWaveSystem _waveSystem;
         private readonly PoolRegistry _poolRegistry;
 
         private readonly BootState _bootState;
@@ -21,7 +21,7 @@ namespace Asteroids.Core {
 
         public GameStateService(
             IHealth health, IScoreSystem scoreSystem,
-            IShipSpawnService shipSpawnService, WaveSystem waveSystem,
+            IShipSpawnService shipSpawnService, IWaveSystem waveSystem,
             PoolRegistry poolRegistry, BootState bootState,
             PlayingState playingState, GameOverState gameOverState) {
             _health = health;

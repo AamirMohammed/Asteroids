@@ -7,9 +7,9 @@ namespace Asteroids.Core {
     public class BootState : IState {
         private readonly PoolRegistry _poolRegistry;
         private readonly IShipSpawnService _shipSpawnService;
-        private readonly WaveSystem _waveSystem;
+        private readonly IWaveSystem _waveSystem;
 
-        public BootState(PoolRegistry poolRegistry, IShipSpawnService shipSpawnService, WaveSystem waveSystem) {
+        public BootState(PoolRegistry poolRegistry, IShipSpawnService shipSpawnService, IWaveSystem waveSystem) {
             _poolRegistry = poolRegistry;
             _shipSpawnService = shipSpawnService;
             _waveSystem = waveSystem;

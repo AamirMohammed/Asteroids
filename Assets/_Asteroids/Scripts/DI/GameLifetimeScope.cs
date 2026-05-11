@@ -31,7 +31,7 @@ namespace Asteroids.DI {
             builder.RegisterEntryPoint<LivesPresenter>();
             builder.RegisterEntryPoint<ScoreSystem>().As<IScoreSystem>();
             builder.RegisterEntryPoint<AsteroidSpawnService>().As<IAsteroidSpawnService>();
-            builder.RegisterEntryPoint<WaveSystem>().AsSelf();
+            builder.RegisterEntryPoint<WaveSystem>().As<IWaveSystem>();
             builder.RegisterEntryPoint<GameStateService>().As<IGameStateService>();
             builder.RegisterEntryPoint<GameOverPresenter>();
             builder.RegisterEntryPoint<ShipSpawnService>().As<IShipSpawnService>();
