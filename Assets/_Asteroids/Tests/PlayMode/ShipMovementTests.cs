@@ -13,6 +13,7 @@ namespace Asteroids.Tests.PlayMode {
         private GameObject _ship;
         private ShipMovement _shipMovement;
         private IInputReader _inputReader;
+        private IShipConfig _shipConfig;
 
         [SetUp]
         public void Setup() {
@@ -21,7 +22,10 @@ namespace Asteroids.Tests.PlayMode {
             _ship.AddComponent<Rigidbody2D>().gravityScale = 0;
             _shipMovement = _ship.AddComponent<ShipMovement>();
             _inputReader = Substitute.For<IInputReader>();
-            _shipMovement.Construct(_inputReader);
+            _shipConfig = Substitute.For<IShipConfig>();
+            _shipConfig.ThrustForce.Returns(5f);
+            _shipConfig.RotationSpeed.Returns(200f);
+            _shipMovement.Construct(_inputReader, _shipConfig);
             _ship.SetActive(true);
         }
 

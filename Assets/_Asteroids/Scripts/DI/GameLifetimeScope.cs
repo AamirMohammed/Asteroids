@@ -25,6 +25,7 @@ namespace Asteroids.DI {
         [SerializeField] private GameOverView _gameOverView;
         [SerializeField] private ScoreView _scoreView;
         [SerializeField] private LivesView _livesView;
+        [SerializeField] private ShipConfig _shipConfig;
 
         protected override void Configure(IContainerBuilder builder) {
             builder.RegisterEntryPoint<ScorePresenter>();
@@ -40,6 +41,7 @@ namespace Asteroids.DI {
             builder.RegisterInstance(_largeAsteroidConfig).As<IAsteroidConfig>();
             builder.RegisterInstance(_shipComponent).As<IShip>();
             builder.RegisterInstance(_playerConfig).As<IPlayerConfig>();
+            builder.RegisterInstance(_shipConfig).As<IShipConfig>();
             builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();
             builder.Register<ScreenWrapCalculator>(Lifetime.Singleton);
             builder.Register<UnityRandomProvider>(Lifetime.Singleton).As<IRandomProvider>();

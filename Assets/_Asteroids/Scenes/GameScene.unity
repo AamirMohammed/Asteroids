@@ -780,8 +780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91ac947f3a231b48a8e6e88a8446112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Asteroids.Game::Asteroids.Ship.ShipMovement
-  _thrustForce: 5
-  _rotationSpeed: 200
 --- !u!50 &548846353
 Rigidbody2D:
   serializedVersion: 5
@@ -1010,6 +1008,7 @@ MonoBehaviour:
   _gameOverView: {fileID: 1228140652}
   _scoreView: {fileID: 1159050686}
   _livesView: {fileID: 1922310857}
+  _shipConfig: {fileID: 11400000, guid: 2db61a315ec9f4e4ebe56638a5f60d41, type: 2}
 --- !u!4 &817925758
 Transform:
   m_ObjectHideFlags: 0
