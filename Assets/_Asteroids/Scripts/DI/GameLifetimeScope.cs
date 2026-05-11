@@ -20,14 +20,16 @@ namespace Asteroids.DI {
         [SerializeField] private PoolRegistry _poolRegistry;
         [SerializeField] private AsteroidConfig _largeAsteroidConfig;
         [SerializeField] private AsteroidSpawner _asteroidSpawner;
-        [SerializeField] private ScoreView _scoreView;
         [SerializeField] private WaveConfig _waveConfig;
         [SerializeField] private ShipMovement _shipMovement;
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private GameOverView _gameOverView;
+        [SerializeField] private ScoreView _scoreView;
+        [SerializeField] private LivesView _livesView;
 
         protected override void Configure(IContainerBuilder builder) {
             builder.RegisterEntryPoint<ScorePresenter>();
+            builder.RegisterEntryPoint<LivesPresenter>();
             builder.RegisterEntryPoint<ScoreSystem>().As<IScoreSystem>();
             builder.RegisterEntryPoint<AsteroidSpawnService>().As<IAsteroidSpawnService>();
             builder.RegisterEntryPoint<WaveSystem>().AsSelf();
@@ -50,6 +52,7 @@ namespace Asteroids.DI {
             builder.RegisterComponent(_poolRegistry);
             builder.RegisterComponent(_asteroidSpawner).As<IAsteroidSpawner>();
             builder.RegisterComponent(_scoreView).As<IScoreView>();
+            builder.RegisterComponent(_livesView).As<ILivesView>();
             builder.RegisterComponent(_gameOverView).As<IGameOverView>();
         }
     }
