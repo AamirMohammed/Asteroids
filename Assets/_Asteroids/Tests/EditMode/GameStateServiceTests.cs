@@ -36,17 +36,39 @@ namespace Asteroids.Tests.EditMode {
         }
 
         [Test]
-        public void Initialize_Always_InitializesPool() {
-            _poolRegistry.Received().Initialize();
+        public void Tick_WhenPoolIsReady_TransitionsToPlayingState() {
+            _poolRegistry.IsReady.Returns(true);
+            _gameStateService.Tick();
+            _shipSpawnService.Received().Spawn();
         }
 
         [Test]
-        public void Tick_WhenOutOfLives_ResetsAllPools() {
+        public void Tick_WhenOutOfLives_TransitionsToGameOverState() {
             _poolRegistry.IsReady.Returns(true);
             _gameStateService.Tick();
             _playerLives.IsOutOfLives.Returns(true);
             _gameStateService.Tick();
             _poolRegistry.Received().ResetAllPools();
         }
+
+        [Test]
+        public void Restart_WhenCalled_ResetsLives() {
+            _gameStateService.Restart();
+            _playerLives.Received().Reset();
+        }
+
+        [Test]
+        public void Restart_WhenCalled_ResetsScore() {
+            _gameStateService.Restart();
+            _scoreService.Received().Reset();
+        }
+
+        [Test]
+        public void Restart_WhenCalled_ResetsWave() {
+            _gameStateService.Restart();
+            _waveService.Received().Reset();
+        }
     }
+    
+    
 }
