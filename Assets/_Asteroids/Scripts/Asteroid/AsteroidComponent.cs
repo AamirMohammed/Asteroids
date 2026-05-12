@@ -1,4 +1,5 @@
-﻿using Asteroids.Pooling;
+﻿using Asteroids.EventChannels;
+using Asteroids.Pooling;
 using Asteroids.Projectiles;
 using UnityEngine;
 using VContainer;
@@ -8,10 +9,10 @@ namespace Asteroids.Asteroid {
         [SerializeField] private Rigidbody2D _rigidbody;
 
         private IAsteroidConfig _config;
-        private AsteroidDestroyedChannel _destroyedChannel;
+        private IEventChannel<AsteroidDestroyedData> _destroyedChannel;
 
         [Inject]
-        public void Construct(AsteroidDestroyedChannel destroyedChannel) {
+        public void Construct(IEventChannel<AsteroidDestroyedData> destroyedChannel) {
             _destroyedChannel = destroyedChannel;
         }
 
