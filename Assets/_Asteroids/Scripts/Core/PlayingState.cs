@@ -24,6 +24,7 @@ namespace Asteroids.Core {
         }
 
         private void OnLivesChanged(int lives) {
+            if(lives <= 0) return;
             _shipSpawnService.ScheduleRespawn();
         }
     }

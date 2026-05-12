@@ -29,6 +29,7 @@ namespace Asteroids.Ship {
 
         public void CancelRespawn() {
             _isRespawning = false;
+            _ship.Hide();
         }
 
         public void Tick() {
