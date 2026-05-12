@@ -3,7 +3,7 @@ using Asteroids.Lives;
 using VContainer.Unity;
 
 namespace Asteroids.UI.HUD {
-    public class LivesPresenter : IDisposable, IInitializable {
+    public class LivesPresenter : IInitializable, IDisposable {
         private readonly IPlayerLives _playerLives;
         private readonly ILivesView _view;
 

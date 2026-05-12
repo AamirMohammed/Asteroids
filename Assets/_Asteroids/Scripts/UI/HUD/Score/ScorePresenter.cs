@@ -3,7 +3,7 @@ using Asteroids.Scoring;
 using VContainer.Unity;
 
 namespace Asteroids.UI.HUD {
-    public class ScorePresenter : IDisposable, IInitializable {
+    public class ScorePresenter : IInitializable, IDisposable {
         private readonly IScoreService _scoreService;
         private readonly IScoreView _view;
 
