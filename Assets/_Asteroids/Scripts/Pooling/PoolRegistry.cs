@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Asteroids.Pooling {
     public class PoolRegistry : MonoBehaviour, IPoolRegistry {
-        public event Action Ready;
         public bool IsReady { get; private set; }
 
         private readonly Dictionary<string, PrefabPool> _pools = new Dictionary<string, PrefabPool>();
@@ -25,7 +23,6 @@ namespace Asteroids.Pooling {
         private IEnumerator WaitForPools() {
             yield return new WaitUntil(AllPoolsReady);
             IsReady = true;
-            Ready?.Invoke();
         }
 
         private bool AllPoolsReady() {
