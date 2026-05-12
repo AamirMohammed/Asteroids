@@ -6,11 +6,11 @@ using VContainer.Unity;
 
 namespace Asteroids.Asteroid {
     public class AsteroidSpawnService : IInitializable, IDisposable, IAsteroidSpawnService {
-        private readonly PoolRegistry _poolRegistry;
+        private readonly IPoolRegistry _poolRegistry;
         private readonly IReadOnlyEventChannel<AsteroidDestroyedData> _destroyedChannel;
         private readonly AsteroidSpawnController _spawnController;
 
-        public AsteroidSpawnService(PoolRegistry poolRegistry,
+        public AsteroidSpawnService(IPoolRegistry poolRegistry,
             IReadOnlyEventChannel<AsteroidDestroyedData> destroyedChannel,
             AsteroidSpawnController spawnController) {
             _poolRegistry = poolRegistry;

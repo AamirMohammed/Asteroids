@@ -65,7 +65,7 @@ namespace Asteroids.DI {
             // Components
             builder.RegisterComponent(_shipComponent).As<IShip>();
             builder.RegisterComponent(_inputReader).As<IInputReader>();
-            builder.RegisterComponent(_poolRegistry).As<IPoolRegistry>().AsSelf();
+            builder.RegisterComponent(_poolRegistry).As<IPoolRegistry>();
             builder.RegisterInstance(Camera.main);
 
             // UI

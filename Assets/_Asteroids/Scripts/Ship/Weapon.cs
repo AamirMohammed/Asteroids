@@ -10,11 +10,11 @@ namespace Asteroids.Ship {
         [SerializeField] private Transform _firePoint;
         [SerializeField] private AssetReferenceGameObject _bulletReference;
 
-        private PoolRegistry _poolRegistry;
+        private IPoolRegistry _poolRegistry;
         private IInputReader _inputReader;
 
         [Inject]
-        public void Construct(PoolRegistry poolRegistry, IInputReader inputReader) {
+        public void Construct(IPoolRegistry poolRegistry, IInputReader inputReader) {
             _poolRegistry = poolRegistry;
             _inputReader = inputReader;
         }
