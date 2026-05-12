@@ -1,6 +1,6 @@
 using Asteroids.Asteroid;
 using Asteroids.Core;
-using Asteroids.HealthSystem;
+using Asteroids.Lives;
 using Asteroids.Input;
 using Asteroids.Pooling;
 using Asteroids.Randomization;
@@ -50,7 +50,7 @@ namespace Asteroids.DI {
             builder.RegisterInstance(_largeAsteroidConfig).As<IAsteroidConfig>();
 
             // Services
-            builder.Register<Health>(Lifetime.Singleton).As<IHealth>();
+            builder.Register<PlayerLives>(Lifetime.Singleton).As<IPlayerLives>();
             builder.Register<AsteroidDestroyedChannel>(Lifetime.Singleton);
             builder.Register<AsteroidSpawnController>(Lifetime.Singleton);
             builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();

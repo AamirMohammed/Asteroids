@@ -1,8 +1,8 @@
 using System;
 using Asteroids.Core;
 
-namespace Asteroids.HealthSystem {
-    public class Health : IHealth {
+namespace Asteroids.Lives {
+    public class PlayerLives : IPlayerLives {
         private readonly IPlayerConfig _config;
 
         public int Lives { get; private set; }
@@ -10,7 +10,7 @@ namespace Asteroids.HealthSystem {
         public event Action<int> LivesChanged;
         public event Action Died;
 
-        public Health(IPlayerConfig config) {
+        public PlayerLives(IPlayerConfig config) {
             _config = config;
             Lives = _config.Lives;
         }

@@ -1,22 +1,22 @@
 using Asteroids.Core;
-using Asteroids.HealthSystem;
+using Asteroids.Lives;
 using Asteroids.UI.GameOver;
 using NSubstitute;
 using NUnit.Framework;
 
 namespace Asteroids.Tests.EditMode {
     public class GameOverPresenterTests {
-        private IHealth _health;
+        private IPlayerLives _playerLives;
         private IGameOverView _view;
         private IGameStateService _gameStateService;
         private GameOverPresenter _presenter;
 
         [SetUp]
         public void Setup() {
-            _health = Substitute.For<IHealth>();
+            _playerLives = Substitute.For<IPlayerLives>();
             _view = Substitute.For<IGameOverView>();
             _gameStateService = Substitute.For<IGameStateService>();
-            _presenter = new GameOverPresenter(_health, _view, _gameStateService);
+            _presenter = new GameOverPresenter(_playerLives, _view, _gameStateService);
             _presenter.Initialize();
         }
 
@@ -31,8 +31,8 @@ namespace Asteroids.Tests.EditMode {
         }
 
         [Test]
-        public void OnDied_WhenHealthDies_ShowsView() {
-            _health.Died += Raise.Event<System.Action>();
+        public void OnDied_WhenPlayerDies_ShowsView() {
+            _playerLives.Died += Raise.Event<System.Action>();
 
             _view.Received().Show();
         }

@@ -1,4 +1,4 @@
-﻿using Asteroids.HealthSystem;
+﻿using Asteroids.Lives;
 using Asteroids.Pooling;
 using Asteroids.Scoring;
 using Asteroids.Ship;
@@ -9,7 +9,7 @@ using VContainer.Unity;
 namespace Asteroids.Core {
     public class GameStateService : IInitializable, ITickable, IGameStateService {
         private readonly StateMachine _stateMachine;
-        private readonly IHealth _health;
+        private readonly IPlayerLives _playerLives;
         private readonly IScoreSystem _scoreSystem;
         private readonly IShipSpawnService _shipSpawnService;
         private readonly IWaveSystem _waveSystem;
@@ -20,11 +20,11 @@ namespace Asteroids.Core {
         private readonly GameOverState _gameOverState;
 
         public GameStateService(
-            IHealth health, IScoreSystem scoreSystem,
+            IPlayerLives playerLives, IScoreSystem scoreSystem,
             IShipSpawnService shipSpawnService, IWaveSystem waveSystem,
             PoolRegistry poolRegistry, BootState bootState,
             PlayingState playingState, GameOverState gameOverState) {
-            _health = health;
+            _playerLives = playerLives;
             _scoreSystem = scoreSystem;
             _shipSpawnService = shipSpawnService;
             _waveSystem = waveSystem;
@@ -37,7 +37,7 @@ namespace Asteroids.Core {
 
         public void Initialize() {
             _stateMachine.AddTransition(_bootState, _playingState, () => _poolRegistry.IsReady);
-            _stateMachine.AddTransition(_playingState, _gameOverState, () => _health.IsDead);
+            _stateMachine.AddTransition(_playingState, _gameOverState, () => _playerLives.IsDead);
             _stateMachine.SetState(_bootState);
         }
 
@@ -46,7 +46,7 @@ namespace Asteroids.Core {
         }
 
         public void Restart() {
-            _health.Reset();
+            _playerLives.Reset();
             _scoreSystem.Reset();
             _waveSystem.Reset();
             _shipSpawnService.Spawn();

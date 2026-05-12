@@ -1,20 +1,20 @@
 ﻿using System;
-using Asteroids.HealthSystem;
+using Asteroids.Lives;
 using VContainer.Unity;
 
 namespace Asteroids.UI.HUD {
     public class LivesPresenter : IDisposable, IInitializable {
-        private readonly IHealth _health;
+        private readonly IPlayerLives _playerLives;
         private readonly ILivesView _view;
 
-        public LivesPresenter(IHealth health, ILivesView view) {
-            _health = health;
+        public LivesPresenter(IPlayerLives playerLives, ILivesView view) {
+            _playerLives = playerLives;
             _view = view;
         }
 
         public void Initialize() {
-            _health.LivesChanged += OnLivesChanged;
-            _view.SetLives(_health.Lives);
+            _playerLives.LivesChanged += OnLivesChanged;
+            _view.SetLives(_playerLives.Lives);
         }
 
         private void OnLivesChanged(int lives) {
@@ -22,7 +22,7 @@ namespace Asteroids.UI.HUD {
         }
 
         public void Dispose() {
-            _health.LivesChanged -= OnLivesChanged;
+            _playerLives.LivesChanged -= OnLivesChanged;
         }
     }
 }

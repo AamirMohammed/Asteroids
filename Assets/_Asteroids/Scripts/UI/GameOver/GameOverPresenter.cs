@@ -1,28 +1,28 @@
 ﻿using System;
 using Asteroids.Core;
-using Asteroids.HealthSystem;
+using Asteroids.Lives;
 using VContainer.Unity;
 
 namespace Asteroids.UI.GameOver {
     public class GameOverPresenter : IInitializable, IDisposable {
-        private readonly IHealth _health;
+        private readonly IPlayerLives _playerLives;
         private readonly IGameOverView _view;
         private readonly IGameStateService _gameStateService;
 
-        public GameOverPresenter(IHealth health, IGameOverView view, IGameStateService gameStateService) {
-            _health = health;
+        public GameOverPresenter(IPlayerLives playerLives, IGameOverView view, IGameStateService gameStateService) {
+            _playerLives = playerLives;
             _view = view;
             _gameStateService = gameStateService;
         }
 
         public void Initialize() {
-            _health.Died += OnDied;
+            _playerLives.Died += OnDied;
             _view.RestartPressed += OnRestartPressed;
             _view.Hide();
         }
 
         public void Dispose() {
-            _health.Died -= OnDied;
+            _playerLives.Died -= OnDied;
             _view.RestartPressed -= OnRestartPressed;
         }
 

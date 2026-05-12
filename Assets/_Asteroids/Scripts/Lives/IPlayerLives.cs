@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace Asteroids.HealthSystem {
-    public interface IHealth {
+namespace Asteroids.Lives {
+    public interface IPlayerLives {
         int Lives { get; }
         bool IsDead { get; }
         event Action<int> LivesChanged;

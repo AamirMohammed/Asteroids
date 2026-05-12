@@ -1,15 +1,15 @@
 using Asteroids.Asteroid;
-using Asteroids.HealthSystem;
+using Asteroids.Lives;
 using UnityEngine;
 using VContainer;
 
 namespace Asteroids.Ship {
     public class ShipCollision : MonoBehaviour {
-        private IHealth _health;
+        private IPlayerLives _playerLives;
 
         [Inject]
-        public void Construct(IHealth health) {
-            _health = health;
+        public void Construct(IPlayerLives playerLives) {
+            _playerLives = playerLives;
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -21,7 +21,7 @@ namespace Asteroids.Ship {
                 return;
             }
 
-            _health.LoseLife();
+            _playerLives.LoseLife();
         }
     }
 }

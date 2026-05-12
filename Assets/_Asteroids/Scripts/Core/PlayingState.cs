@@ -1,23 +1,23 @@
-﻿using Asteroids.HealthSystem;
+﻿using Asteroids.Lives;
 using Asteroids.Ship;
 using FSM;
 
 namespace Asteroids.Core {
     public class PlayingState : IState {
-        private readonly IHealth _health;
+        private readonly IPlayerLives _playerLives;
         private readonly IShipSpawnService _shipSpawnService;
 
-        public PlayingState(IHealth health, IShipSpawnService shipSpawnService) {
-            _health = health;
+        public PlayingState(IPlayerLives playerLives, IShipSpawnService shipSpawnService) {
+            _playerLives = playerLives;
             _shipSpawnService = shipSpawnService;
         }
 
         public void OnEnter() {
-            _health.LivesChanged += OnLivesChanged;
+            _playerLives.LivesChanged += OnLivesChanged;
         }
 
         public void OnExit() {
-            _health.LivesChanged -= OnLivesChanged;
+            _playerLives.LivesChanged -= OnLivesChanged;
         }
 
         public void Tick() {
