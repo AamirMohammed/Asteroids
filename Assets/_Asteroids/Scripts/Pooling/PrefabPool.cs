@@ -17,7 +17,7 @@ namespace Asteroids.Pooling {
         private IObjectResolver _container;
         private readonly HashSet<PoolItem> _activeItems = new HashSet<PoolItem>();
 
-        public string RuntimeKey => _prefabReference.RuntimeKey.ToString();
+        public object RuntimeKey => _prefabReference.RuntimeKey;
         public bool IsReady { get; private set; }
 
 

@@ -7,7 +7,7 @@ namespace Asteroids.Pooling {
     public class PoolRegistry : MonoBehaviour, IPoolRegistry {
         public bool IsReady { get; private set; }
 
-        private readonly Dictionary<string, PrefabPool> _pools = new Dictionary<string, PrefabPool>();
+        private readonly Dictionary<object, PrefabPool> _pools = new Dictionary<object, PrefabPool>();
 
         public void Initialize() {
             PrefabPool[] pools = GetComponentsInChildren<PrefabPool>();
@@ -36,12 +36,11 @@ namespace Asteroids.Pooling {
         }
 
         public T Get<T>(AssetReference assetReference) where T : PoolItem {
-            string runtimeKey = assetReference.RuntimeKey.ToString();
-            if (_pools.TryGetValue(runtimeKey, out PrefabPool pool)) {
+            if (_pools.TryGetValue(assetReference.RuntimeKey, out PrefabPool pool)) {
                 return pool.GetItem() as T;
             }
 
-            Debug.LogError($"No pool found for runtime key: {runtimeKey}");
+            Debug.LogError($"No pool found for runtime key: {assetReference.RuntimeKey}");
             return null;
         }
 
