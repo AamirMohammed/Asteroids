@@ -27,6 +27,10 @@ namespace Asteroids.Ship {
             _respawnTimer = _playerConfig.RespawnDelay;
         }
 
+        public void CancelRespawn() {
+            _isRespawning = false;
+        }
+
         public void Tick() {
             if (!_isRespawning) {
                 return;
