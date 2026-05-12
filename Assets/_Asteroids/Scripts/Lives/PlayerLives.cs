@@ -6,9 +6,9 @@ namespace Asteroids.Lives {
         private readonly IPlayerConfig _config;
 
         public int Lives { get; private set; }
-        public bool IsDead => Lives <= 0;
+        public bool IsOutOfLives => Lives <= 0;
         public event Action<int> LivesChanged;
-        public event Action Died;
+        public event Action LivesDepleted;
 
         public PlayerLives(IPlayerConfig config) {
             _config = config;
@@ -16,14 +16,14 @@ namespace Asteroids.Lives {
         }
 
         public void LoseLife() {
-            if (IsDead) {
+            if (IsOutOfLives) {
                 return;
             }
 
             Lives--;
             LivesChanged?.Invoke(Lives);
-            if (IsDead) {
-                Died?.Invoke();
+            if (IsOutOfLives) {
+                LivesDepleted?.Invoke();
             }
         }
 

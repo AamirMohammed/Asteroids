@@ -31,8 +31,8 @@ namespace Asteroids.Tests.EditMode {
         }
 
         [Test]
-        public void OnDied_WhenPlayerDies_ShowsView() {
-            _playerLives.Died += Raise.Event<System.Action>();
+        public void OnDied_WhenLivesDepleted_ShowsView() {
+            _playerLives.LivesDepleted += Raise.Event<System.Action>();
 
             _view.Received().Show();
         }

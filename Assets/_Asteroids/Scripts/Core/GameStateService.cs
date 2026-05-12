@@ -37,7 +37,7 @@ namespace Asteroids.Core {
 
         public void Initialize() {
             _stateMachine.AddTransition(_bootState, _playingState, () => _poolRegistry.IsReady);
-            _stateMachine.AddTransition(_playingState, _gameOverState, () => _playerLives.IsDead);
+            _stateMachine.AddTransition(_playingState, _gameOverState, () => _playerLives.IsOutOfLives);
             _stateMachine.SetState(_bootState);
         }
 

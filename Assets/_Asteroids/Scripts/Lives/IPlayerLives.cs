@@ -3,9 +3,9 @@
 namespace Asteroids.Lives {
     public interface IPlayerLives {
         int Lives { get; }
-        bool IsDead { get; }
+        bool IsOutOfLives { get; }
         event Action<int> LivesChanged;
-        event Action Died;
+        event Action LivesDepleted;
         void LoseLife();
         void Reset();
     }

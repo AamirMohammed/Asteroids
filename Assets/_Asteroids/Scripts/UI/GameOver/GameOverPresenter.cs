@@ -16,17 +16,17 @@ namespace Asteroids.UI.GameOver {
         }
 
         public void Initialize() {
-            _playerLives.Died += OnDied;
+            _playerLives.LivesDepleted += OnLivesDepleted;
             _view.RestartPressed += OnRestartPressed;
             _view.Hide();
         }
 
         public void Dispose() {
-            _playerLives.Died -= OnDied;
+            _playerLives.LivesDepleted -= OnLivesDepleted;
             _view.RestartPressed -= OnRestartPressed;
         }
 
-        private void OnDied() {
+        private void OnLivesDepleted() {
             _view.Show();
         }
 
