@@ -14,7 +14,6 @@ namespace Asteroids.Pooling {
 
         private ObjectPool<PoolItem> _pool;
         private GameObject _prefab;
-        private string _runtimeKey;
         private IObjectResolver _container;
         private readonly HashSet<PoolItem> _activeItems = new HashSet<PoolItem>();
 
