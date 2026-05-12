@@ -51,7 +51,7 @@ namespace Asteroids.DI {
 
             // Services
             builder.Register<PlayerLives>(Lifetime.Singleton).As<IPlayerLives>();
-            builder.Register<AsteroidDestroyedChannel>(Lifetime.Singleton);
+            builder.Register<AsteroidDestroyedChannel>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<AsteroidSpawnController>(Lifetime.Singleton);
             builder.Register<CameraScreenBoundsProvider>(Lifetime.Singleton).As<IScreenBoundsProvider>();
             builder.Register<ScreenWrapCalculator>(Lifetime.Singleton);

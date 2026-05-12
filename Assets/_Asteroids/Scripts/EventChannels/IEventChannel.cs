@@ -1,8 +1,5 @@
-using System;
-
 namespace Asteroids.EventChannels {
-    public interface IEventChannel<T> {
-        event Action<T> Published;
+    public interface IEventChannel<T> : IReadOnlyEventChannel<T> {
         void Publish(T data);
     }
 }

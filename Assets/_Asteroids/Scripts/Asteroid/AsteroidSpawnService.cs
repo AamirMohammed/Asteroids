@@ -1,4 +1,5 @@
 ﻿using System;
+using Asteroids.EventChannels;
 using Asteroids.Pooling;
 using UnityEngine;
 using VContainer.Unity;
@@ -6,11 +7,11 @@ using VContainer.Unity;
 namespace Asteroids.Asteroid {
     public class AsteroidSpawnService : IInitializable, IDisposable, IAsteroidSpawnService {
         private readonly PoolRegistry _poolRegistry;
-        private readonly AsteroidDestroyedChannel _destroyedChannel;
+        private readonly IReadOnlyEventChannel<AsteroidDestroyedData> _destroyedChannel;
         private readonly AsteroidSpawnController _spawnController;
 
         public AsteroidSpawnService(PoolRegistry poolRegistry,
-            AsteroidDestroyedChannel destroyedChannel,
+            IReadOnlyEventChannel<AsteroidDestroyedData> destroyedChannel,
             AsteroidSpawnController spawnController) {
             _poolRegistry = poolRegistry;
             _destroyedChannel = destroyedChannel;

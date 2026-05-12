@@ -1,18 +1,20 @@
 using System;
 using Asteroids.Asteroid;
+using Asteroids.EventChannels;
 using VContainer.Unity;
 
 namespace Asteroids.Wave {
     public class WaveSystem : IWaveSystem, IInitializable, IDisposable {
         private readonly IAsteroidSpawnService _spawnService;
-        private readonly AsteroidDestroyedChannel _destroyedChannel;
+        private readonly IReadOnlyEventChannel<AsteroidDestroyedData> _destroyedChannel;
         private readonly IAsteroidConfig _largeAsteroidConfig;
         private readonly IWaveConfig _waveConfig;
 
         private int _asteroidsRemaining;
         private int _currentWave;
 
-        public WaveSystem(IAsteroidSpawnService spawnService, AsteroidDestroyedChannel destroyedChannel,
+        public WaveSystem(IAsteroidSpawnService spawnService,
+            IReadOnlyEventChannel<AsteroidDestroyedData> destroyedChannel,
             IAsteroidConfig largeAsteroidConfig, IWaveConfig waveConfig) {
             _spawnService = spawnService;
             _destroyedChannel = destroyedChannel;

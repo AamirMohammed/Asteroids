@@ -1,15 +1,16 @@
 ﻿using System;
 using Asteroids.Asteroid;
+using Asteroids.EventChannels;
 using VContainer.Unity;
 
 namespace Asteroids.Scoring {
     public class ScoreSystem : IScoreSystem, IInitializable, IDisposable {
-        private readonly AsteroidDestroyedChannel _asteroidDestroyedChannel;
+        private readonly IReadOnlyEventChannel<AsteroidDestroyedData> _asteroidDestroyedChannel;
 
         public int Score { get; private set; }
         public event Action<int> ScoreChanged;
 
-        public ScoreSystem(AsteroidDestroyedChannel asteroidDestroyedChannel) {
+        public ScoreSystem(IReadOnlyEventChannel<AsteroidDestroyedData> asteroidDestroyedChannel) {
             _asteroidDestroyedChannel = asteroidDestroyedChannel;
         }
 
