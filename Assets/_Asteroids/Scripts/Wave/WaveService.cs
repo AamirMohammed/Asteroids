@@ -4,7 +4,7 @@ using Asteroids.EventChannels;
 using VContainer.Unity;
 
 namespace Asteroids.Wave {
-    public class WaveSystem : IWaveSystem, IInitializable, IDisposable {
+    public class WaveService : IWaveService, IInitializable, IDisposable {
         private readonly IAsteroidSpawnService _spawnService;
         private readonly IReadOnlyEventChannel<AsteroidDestroyedData> _destroyedChannel;
         private readonly IAsteroidConfig _largeAsteroidConfig;
@@ -13,7 +13,7 @@ namespace Asteroids.Wave {
         private int _asteroidsRemaining;
         private int _currentWave;
 
-        public WaveSystem(IAsteroidSpawnService spawnService,
+        public WaveService(IAsteroidSpawnService spawnService,
             IReadOnlyEventChannel<AsteroidDestroyedData> destroyedChannel,
             IAsteroidConfig largeAsteroidConfig, IWaveConfig waveConfig) {
             _spawnService = spawnService;

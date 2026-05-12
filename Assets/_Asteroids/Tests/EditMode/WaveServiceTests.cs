@@ -4,12 +4,12 @@ using NSubstitute;
 using NUnit.Framework;
 
 namespace Asteroids.Tests.EditMode {
-    public class WaveSystemTests {
+    public class WaveServiceTests {
         private AsteroidDestroyedChannel _channel;
         private IAsteroidSpawnService _spawnService;
         private IWaveConfig _waveConfig;
         private IAsteroidConfig _largeConfig;
-        private WaveSystem _waveSystem;
+        private WaveService _waveService;
 
         [SetUp]
         public void Setup() {
@@ -23,31 +23,31 @@ namespace Asteroids.Tests.EditMode {
             _largeConfig.CanSplit.Returns(false);
             _largeConfig.SplitIntoConfig.Returns((IAsteroidConfig)null);
 
-            _waveSystem = new WaveSystem(_spawnService, _channel, _largeConfig, _waveConfig);
-            _waveSystem.Initialize();
+            _waveService = new WaveService(_spawnService, _channel, _largeConfig, _waveConfig);
+            _waveService.Initialize();
         }
 
         [TearDown]
         public void TearDown() {
-            _waveSystem.Dispose();
+            _waveService.Dispose();
         }
 
         [Test]
         public void StartWave_WhenCalled_CallsSpawnWave() {
-            _waveSystem.StartWave();
+            _waveService.StartWave();
             _spawnService.Received().SpawnWave(4, _largeConfig);
         }
 
         [Test]
         public void StartWave_WhenCalledTwice_IncrementsWaveCount() {
-            _waveSystem.StartWave();
-            _waveSystem.StartWave();
+            _waveService.StartWave();
+            _waveService.StartWave();
             _waveConfig.Received().GetAsteroidCount(2);
         }
 
         [Test]
         public void OnAsteroidDestroyed_WhenRemainingReachesZero_StartsNextWave() {
-            _waveSystem.StartWave();
+            _waveService.StartWave();
             _spawnService.ClearReceivedCalls();
 
             for (int i = 0; i < 4; i++) {
@@ -59,10 +59,10 @@ namespace Asteroids.Tests.EditMode {
 
         [Test]
         public void Reset_WhenCalled_SetsWaveToZero() {
-            _waveSystem.StartWave();
-            _waveSystem.StartWave();
-            _waveSystem.Reset();
-            _waveSystem.StartWave();
+            _waveService.StartWave();
+            _waveService.StartWave();
+            _waveService.Reset();
+            _waveService.StartWave();
             _waveConfig.Received().GetAsteroidCount(1);
         }
     }

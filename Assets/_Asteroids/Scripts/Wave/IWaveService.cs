@@ -1,5 +1,5 @@
 ﻿namespace Asteroids.Wave {
-    public interface IWaveSystem {
+    public interface IWaveService {
         void StartWave();
         void Reset();
     }

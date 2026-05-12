@@ -7,12 +7,12 @@ namespace Asteroids.Core {
     public class BootState : IState {
         private readonly IPoolRegistry _poolRegistry;
         private readonly IShipSpawnService _shipSpawnService;
-        private readonly IWaveSystem _waveSystem;
+        private readonly IWaveService _waveService;
 
-        public BootState(IPoolRegistry poolRegistry, IShipSpawnService shipSpawnService, IWaveSystem waveSystem) {
+        public BootState(IPoolRegistry poolRegistry, IShipSpawnService shipSpawnService, IWaveService waveService) {
             _poolRegistry = poolRegistry;
             _shipSpawnService = shipSpawnService;
-            _waveSystem = waveSystem;
+            _waveService = waveService;
         }
 
         public void OnEnter() {
@@ -21,7 +21,7 @@ namespace Asteroids.Core {
 
         public void OnExit() {
             _shipSpawnService.Spawn();
-            _waveSystem.StartWave();
+            _waveService.StartWave();
         }
 
         public void Tick() {
