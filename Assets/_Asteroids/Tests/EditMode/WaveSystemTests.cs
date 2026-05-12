@@ -51,7 +51,7 @@ namespace Asteroids.Tests.EditMode {
             _spawnService.ClearReceivedCalls();
 
             for (int i = 0; i < 4; i++) {
-                _channel.Publish(new AsteroidDestroyedData { Config = null, Position = default });
+                _channel.Publish(new AsteroidDestroyedData(null, default));
             }
 
             _spawnService.Received().SpawnWave(Arg.Any<int>(), Arg.Any<IAsteroidConfig>());

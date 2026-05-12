@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 
 namespace Asteroids.Asteroid {
-    public struct AsteroidDestroyedData {
-        public IAsteroidConfig Config;
-        public Vector2 Position;
+    public readonly struct AsteroidDestroyedData {
+        public IAsteroidConfig Config { get; }
+        public Vector2 Position { get; }
+
+        public AsteroidDestroyedData(IAsteroidConfig config, Vector2 position) {
+            Config = config;
+            Position = position;
+        }
     }
 }

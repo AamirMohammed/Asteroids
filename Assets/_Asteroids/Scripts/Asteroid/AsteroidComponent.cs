@@ -27,10 +27,8 @@ namespace Asteroids.Asteroid {
                 return;
             }
 
-            _destroyedChannel.Publish(new AsteroidDestroyedData {
-                Config = _config,
-                Position = _rigidbody.position
-            });
+            _destroyedChannel.Publish(new AsteroidDestroyedData(_config, _rigidbody.position));
+
             bullet.Pool.Release(bullet);
             Pool.Release(this);
         }
