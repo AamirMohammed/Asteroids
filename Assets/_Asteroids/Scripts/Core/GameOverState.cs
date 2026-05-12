@@ -4,10 +4,10 @@ using FSM;
 
 namespace Asteroids.Core {
     public class GameOverState : IState {
-        private readonly PoolRegistry _poolRegistry;
+        private readonly IPoolRegistry _poolRegistry;
         private readonly IShipSpawnService _shipSpawnService;
 
-        public GameOverState(PoolRegistry poolRegistry, IShipSpawnService shipSpawnService) {
+        public GameOverState(IPoolRegistry poolRegistry, IShipSpawnService shipSpawnService) {
             _poolRegistry = poolRegistry;
             _shipSpawnService = shipSpawnService;
         }

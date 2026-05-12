@@ -1,7 +1,7 @@
 using Asteroids.Asteroid;
 using Asteroids.Core;
-using Asteroids.Lives;
 using Asteroids.Input;
+using Asteroids.Lives;
 using Asteroids.Pooling;
 using Asteroids.Randomization;
 using Asteroids.Scoring;
@@ -65,7 +65,7 @@ namespace Asteroids.DI {
             // Components
             builder.RegisterComponent(_shipComponent).As<IShip>();
             builder.RegisterComponent(_inputReader).As<IInputReader>();
-            builder.RegisterComponent(_poolRegistry);
+            builder.RegisterComponent(_poolRegistry).As<IPoolRegistry>().AsSelf();
             builder.RegisterInstance(Camera.main);
 
             // UI

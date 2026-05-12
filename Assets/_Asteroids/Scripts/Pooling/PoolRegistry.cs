@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Asteroids.Pooling {
-    public class PoolRegistry : MonoBehaviour {
+    public class PoolRegistry : MonoBehaviour, IPoolRegistry {
         public event Action Ready;
         public bool IsReady { get; private set; }
 

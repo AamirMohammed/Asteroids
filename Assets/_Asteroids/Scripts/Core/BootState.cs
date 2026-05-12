@@ -5,11 +5,11 @@ using FSM;
 
 namespace Asteroids.Core {
     public class BootState : IState {
-        private readonly PoolRegistry _poolRegistry;
+        private readonly IPoolRegistry _poolRegistry;
         private readonly IShipSpawnService _shipSpawnService;
         private readonly IWaveSystem _waveSystem;
 
-        public BootState(PoolRegistry poolRegistry, IShipSpawnService shipSpawnService, IWaveSystem waveSystem) {
+        public BootState(IPoolRegistry poolRegistry, IShipSpawnService shipSpawnService, IWaveSystem waveSystem) {
             _poolRegistry = poolRegistry;
             _shipSpawnService = shipSpawnService;
             _waveSystem = waveSystem;

@@ -13,7 +13,7 @@ namespace Asteroids.Core {
         private readonly IScoreSystem _scoreSystem;
         private readonly IShipSpawnService _shipSpawnService;
         private readonly IWaveSystem _waveSystem;
-        private readonly PoolRegistry _poolRegistry;
+        private readonly IPoolRegistry _poolRegistry;
 
         private readonly BootState _bootState;
         private readonly PlayingState _playingState;
@@ -22,7 +22,7 @@ namespace Asteroids.Core {
         public GameStateService(
             IPlayerLives playerLives, IScoreSystem scoreSystem,
             IShipSpawnService shipSpawnService, IWaveSystem waveSystem,
-            PoolRegistry poolRegistry, BootState bootState,
+            IPoolRegistry poolRegistry, BootState bootState,
             PlayingState playingState, GameOverState gameOverState) {
             _playerLives = playerLives;
             _scoreSystem = scoreSystem;
