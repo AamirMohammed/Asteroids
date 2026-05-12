@@ -56,5 +56,14 @@ namespace Asteroids.Tests.EditMode {
 
             _spawnService.Received().SpawnWave(Arg.Any<int>(), Arg.Any<IAsteroidConfig>());
         }
+
+        [Test]
+        public void Reset_WhenCalled_SetsWaveToZero() {
+            _waveSystem.StartWave();
+            _waveSystem.StartWave();
+            _waveSystem.Reset();
+            _waveSystem.StartWave();
+            _waveConfig.Received().GetAsteroidCount(1);
+        }
     }
 }
