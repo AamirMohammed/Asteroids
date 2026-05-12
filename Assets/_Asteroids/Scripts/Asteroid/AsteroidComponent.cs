@@ -26,12 +26,12 @@ namespace Asteroids.Asteroid {
                 return;
             }
 
-            bullet.Pool.Release(bullet);
-            Pool.Release(this);
             _destroyedChannel.Publish(new AsteroidDestroyedData {
                 Config = _config,
                 Position = _rigidbody.position
             });
+            bullet.Pool.Release(bullet);
+            Pool.Release(this);
         }
     }
 }
