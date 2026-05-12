@@ -53,5 +53,21 @@ namespace Asteroids.Tests.EditMode {
         public void Score_InitialValue_IsZero() {
             Assert.That(_scoreSystem.Score, Is.EqualTo(0));
         }
+
+        [Test]
+        public void Reset_WhenCalled_SetsScoreToZero() {
+            _scoreSystem.AddScore(20);
+            _scoreSystem.Reset();
+            Assert.That(_scoreSystem.Score, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Reset_WhenCalled_FiresScoreChangedWithZero() {
+            int receivedScore = -1;
+            _scoreSystem.AddScore(20);
+            _scoreSystem.ScoreChanged += score => { receivedScore = score; };
+            _scoreSystem.Reset();
+            Assert.That(receivedScore, Is.EqualTo(0));
+        }
     }
 }
