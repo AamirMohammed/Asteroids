@@ -53,7 +53,6 @@ namespace Asteroids.Asteroid {
                 _spawnController.GetRandomDirection(),
                 _spawnController.GetRandomSpeed(config.MinSpeed, config.MaxSpeed),
                 config);
-            asteroidComponent.gameObject.SetActive(true);
         }
     }
 }
