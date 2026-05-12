@@ -26,11 +26,11 @@ namespace Asteroids.Tests.EditMode {
             _shipSpawnService = Substitute.For<IShipSpawnService>();
             _waveService = Substitute.For<IWaveService>();
             _poolRegistry = Substitute.For<IPoolRegistry>();
-            _bootState = new BootState(_poolRegistry, _shipSpawnService, _waveService);
-            _playingState = new PlayingState(_playerLives, _shipSpawnService);
+            _bootState = new BootState(_poolRegistry);
+            _playingState = new PlayingState(_playerLives, _shipSpawnService, _waveService);
             _gameOverState = new GameOverState(_poolRegistry, _shipSpawnService);
             _gameStateService = new GameStateService(
-                _playerLives, _scoreService, _shipSpawnService, _waveService,
+                _playerLives, _scoreService, _waveService,
                 _poolRegistry, _bootState, _playingState, _gameOverState);
             _gameStateService.Initialize();
         }
@@ -38,14 +38,6 @@ namespace Asteroids.Tests.EditMode {
         [Test]
         public void Initialize_Always_InitializesPool() {
             _poolRegistry.Received().Initialize();
-        }
-
-        [Test]
-        public void Tick_WhenPoolsReady_SpawnsShipAndStartsWave() {
-            _poolRegistry.IsReady.Returns(true);
-            _gameStateService.Tick();
-            _shipSpawnService.Received().Spawn();
-            _waveService.Received().StartWave();
         }
 
         [Test]

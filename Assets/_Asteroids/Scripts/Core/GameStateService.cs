@@ -11,7 +11,6 @@ namespace Asteroids.Core {
         private readonly StateMachine _stateMachine;
         private readonly IPlayerLives _playerLives;
         private readonly IScoreService _scoreService;
-        private readonly IShipSpawnService _shipSpawnService;
         private readonly IWaveService _waveService;
         private readonly IPoolRegistry _poolRegistry;
 
@@ -21,12 +20,11 @@ namespace Asteroids.Core {
 
         public GameStateService(
             IPlayerLives playerLives, IScoreService scoreService,
-            IShipSpawnService shipSpawnService, IWaveService waveService,
-            IPoolRegistry poolRegistry, BootState bootState,
-            PlayingState playingState, GameOverState gameOverState) {
+            IWaveService waveService, IPoolRegistry poolRegistry, 
+            BootState bootState, PlayingState playingState, 
+            GameOverState gameOverState) {
             _playerLives = playerLives;
             _scoreService = scoreService;
-            _shipSpawnService = shipSpawnService;
             _waveService = waveService;
             _poolRegistry = poolRegistry;
             _bootState = bootState;
@@ -49,8 +47,6 @@ namespace Asteroids.Core {
             _playerLives.Reset();
             _scoreService.Reset();
             _waveService.Reset();
-            _shipSpawnService.Spawn();
-            _waveService.StartWave();
             _stateMachine.SetState(_playingState);
         }
     }
