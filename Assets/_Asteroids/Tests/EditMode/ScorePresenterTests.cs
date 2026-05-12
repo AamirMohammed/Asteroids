@@ -5,15 +5,15 @@ using NUnit.Framework;
 
 namespace Asteroids.Tests.EditMode {
     public class ScorePresenterTests {
-        private IScoreSystem _scoreSystem;
+        private IScoreService _scoreService;
         private IScoreView _view;
         private ScorePresenter _presenter;
 
         [SetUp]
         public void Setup() {
-            _scoreSystem = Substitute.For<IScoreSystem>();
+            _scoreService = Substitute.For<IScoreService>();
             _view = Substitute.For<IScoreView>();
-            _presenter = new ScorePresenter(_scoreSystem, _view);
+            _presenter = new ScorePresenter(_scoreService, _view);
         }
 
         [TearDown]
@@ -23,7 +23,7 @@ namespace Asteroids.Tests.EditMode {
 
         [Test]
         public void Initialize_WhenCalled_SetsInitialScore() {
-            _scoreSystem.Score.Returns(0);
+            _scoreService.Score.Returns(0);
             _presenter.Initialize();
             _view.Received().SetScore(0);
         }
@@ -31,7 +31,7 @@ namespace Asteroids.Tests.EditMode {
         [Test]
         public void ScoreChanged_WhenEventFires_UpdatesView() {
             _presenter.Initialize();
-            _scoreSystem.ScoreChanged += Raise.Event<System.Action<int>>(42);
+            _scoreService.ScoreChanged += Raise.Event<System.Action<int>>(42);
             _view.Received().SetScore(42);
         }
 
@@ -39,7 +39,7 @@ namespace Asteroids.Tests.EditMode {
         public void Dispose_WhenCalled_UnsubscribesFromScoreChanged() {
             _presenter.Initialize();
             _presenter.Dispose();
-            _scoreSystem.ScoreChanged += Raise.Event<System.Action<int>>(42);
+            _scoreService.ScoreChanged += Raise.Event<System.Action<int>>(42);
             _view.DidNotReceive().SetScore(42);
         }
     }

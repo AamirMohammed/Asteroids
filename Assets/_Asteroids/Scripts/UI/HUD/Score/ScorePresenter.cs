@@ -4,17 +4,17 @@ using VContainer.Unity;
 
 namespace Asteroids.UI.HUD {
     public class ScorePresenter : IDisposable, IInitializable {
-        private readonly IScoreSystem _scoreSystem;
+        private readonly IScoreService _scoreService;
         private readonly IScoreView _view;
 
-        public ScorePresenter(IScoreSystem scoreSystem, IScoreView view) {
-            _scoreSystem = scoreSystem;
+        public ScorePresenter(IScoreService scoreService, IScoreView view) {
+            _scoreService = scoreService;
             _view = view;
         }
 
         public void Initialize() {
-            _scoreSystem.ScoreChanged += OnScoreChanged;
-            _view.SetScore(_scoreSystem.Score);
+            _scoreService.ScoreChanged += OnScoreChanged;
+            _view.SetScore(_scoreService.Score);
         }
 
         private void OnScoreChanged(int score) {
@@ -22,7 +22,7 @@ namespace Asteroids.UI.HUD {
         }
 
         public void Dispose() {
-            _scoreSystem.ScoreChanged -= OnScoreChanged;
+            _scoreService.ScoreChanged -= OnScoreChanged;
         }
     }
 }

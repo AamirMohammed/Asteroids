@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Asteroids.Tests.EditMode {
     public class GameStateServiceTests {
         private IPlayerLives _playerLives;
-        private IScoreSystem _scoreSystem;
+        private IScoreService _scoreService;
         private IShipSpawnService _shipSpawnService;
         private IWaveService _waveService;
         private IPoolRegistry _poolRegistry;
@@ -22,7 +22,7 @@ namespace Asteroids.Tests.EditMode {
         [SetUp]
         public void Setup() {
             _playerLives = Substitute.For<IPlayerLives>();
-            _scoreSystem = Substitute.For<IScoreSystem>();
+            _scoreService = Substitute.For<IScoreService>();
             _shipSpawnService = Substitute.For<IShipSpawnService>();
             _waveService = Substitute.For<IWaveService>();
             _poolRegistry = Substitute.For<IPoolRegistry>();
@@ -30,7 +30,7 @@ namespace Asteroids.Tests.EditMode {
             _playingState = new PlayingState(_playerLives, _shipSpawnService);
             _gameOverState = new GameOverState(_poolRegistry, _shipSpawnService);
             _gameStateService = new GameStateService(
-                _playerLives, _scoreSystem, _shipSpawnService, _waveService,
+                _playerLives, _scoreService, _shipSpawnService, _waveService,
                 _poolRegistry, _bootState, _playingState, _gameOverState);
             _gameStateService.Initialize();
         }
